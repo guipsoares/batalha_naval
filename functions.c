@@ -556,33 +556,8 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1)
 			}
 		}
 
-		if(strcmp(tabaux1[number][coord], vazio) != 0) {
-			tabuleiro1[number][coord] = tabaux1[number][coord];
-
-			if(strcmp(tabuleiro1[number][coord], port_av) == 0)
-			{
-				pontos1 += 42.968;
-			}
-			else if(strcmp(tabuleiro1[number][coord], cour) == 0)
-			{
-				
-				pontos1 += 78.125;
-			}
-			else if(strcmp(tabuleiro1[number][coord], torp) == 0)
-			{
-				
-				pontos1 += 82.031;
-			}
-			else if(strcmp(tabuleiro1[number][coord], hidro) == 0)
-			{
-				pontos1 += 125.000;
-			}
-			
-			
-
-		}
-		else {
-			strcpy(tabuleiro1[number][coord], estrela);
+		if(strcmp(tabaux1[number][coord], estrela) == 0)
+		{
 			if(pontos1 - 3.75 <= 0.0)
 			{
 				pontos1 = 0.0;
@@ -593,6 +568,35 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1)
 			}
 
 		}
+
+
+		else if(strcmp(tabaux1[number][coord], estrela) != 0) {
+
+			if(strcmp(tabaux1[number][coord], port_av) == 0)
+			{
+				pontos1 += 42.968;
+			}
+			else if(strcmp(tabaux1[number][coord], cour) == 0)
+			{
+				
+				pontos1 += 78.125;
+			}
+			else if(strcmp(tabaux1[number][coord], torp) == 0)
+			{
+				
+				pontos1 += 82.031;
+			}
+			else if(strcmp(tabaux1[number][coord], hidro) == 0)
+			{
+				pontos1 += 125.000;
+			}
+			
+
+			
+
+		} 
+		tabuleiro1[number][coord] = tabaux1[number][coord];
+
 	}
 
 
@@ -624,8 +628,22 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2)
 			}
 		}
 
-		if(strcmp(tabaux2[number][coord], vazio) != 0) {
-			tabuleiro2[number][coord] = tabaux2[number][coord];
+
+		if(strcmp(tabaux2[number][coord], estrela) == 0)
+		{
+			if(pontos2 - 3.75 <= 0.0)
+			{
+				pontos2 = 0.0;
+			}
+			else
+			{
+				pontos2 -= 3.75;
+			}
+
+		}
+
+
+		else if(strcmp(tabaux2[number][coord], estrela) != 0) {
 
 			if(strcmp(tabaux2[number][coord], port_av) == 0)
 			{
@@ -633,32 +651,24 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2)
 			}
 			else if(strcmp(tabaux2[number][coord], cour) == 0)
 			{
+				
 				pontos2 += 78.125;
 			}
 			else if(strcmp(tabaux2[number][coord], torp) == 0)
 			{
-
+				
 				pontos2 += 82.031;
 			}
 			else if(strcmp(tabaux2[number][coord], hidro) == 0)
 			{
-
 				pontos2 += 125.000;
 			}
-
-		}
-		else {
-			strcpy(tabuleiro2[number][coord], estrela);
 			
-			if(pontos2 - 3.75 <= 0.0)
-			{
-				pontos2 = 0.0;
-			}
-			else 
-			{
-				pontos2 -= 3.75;
-			}
-		}
+
+			
+
+		} 
+		tabuleiro2[number][coord] = tabaux2[number][coord];
 
 	}
 

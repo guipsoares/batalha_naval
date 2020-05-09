@@ -40,19 +40,18 @@ int main(int argc, char const *argv[])
 			switch(opcao)
 			{
 				case 1: 
+ 					// pre jogo
 					zerandoTabuleiro(tabuleiro1, tabuleiro2, tabaux1, tabaux2);
 					setArmada1(tabaux1);
 					setArmada2(tabaux2);
-					//inicio de jogo
 
-					//printTabuleiro1(tabuleiro1);
-					//printTabuleiro2(tabuleiro2);
-					
-					//printTabuleiro1(tabaux1);
-					acaoP1(tabuleiro1, tabaux1);
-					printTabuleiro1(tabuleiro1);
-					acaoP2(tabuleiro2, tabaux2);
-					//printTabuleiro2(tabaux2);
+					for(int i = 0; i < 5; i++)
+					{
+						acaoP1(tabuleiro1, tabaux1);
+						printTabuleiro1(tabuleiro1);
+						acaoP2(tabuleiro2, tabaux2);
+						printTabuleiro2(tabuleiro2);
+					}
 
 
 					printf("\nDigite 0 e tecle ENTER para retornar ao menu principal.\n");

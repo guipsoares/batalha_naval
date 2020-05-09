@@ -4,7 +4,7 @@
 #include <string.h>
 
 char alphabet[] = {"ABCDEFGHIJKLMNOP"};
-int pontos1=0, pontos2=0;
+double pontos1, pontos2;
 
 // setando todos os valores do tabuleiro como vazios
 int zerandoTabuleiro(char ***tabuleiro1, char ***tabuleiro2, char ***tabaux1, char ***tabaux2)
@@ -17,6 +17,8 @@ int zerandoTabuleiro(char ***tabuleiro1, char ***tabuleiro2, char ***tabaux1, ch
 			tabuleiro2[i][j] = "   ";
 			tabaux1[i][j] = "   ";
 			tabaux2[i][j] = "   ";
+			pontos1 = 0.0;
+			pontos2 = 0.0;
 		}
     }
 }
@@ -26,7 +28,7 @@ int printTabuleiro1(char ***tabuleiro1)
 	if(!tabuleiro1) return -1;
 	printf("\n\n      ___________________________________________________________________________________\n");
  	printf("     |                                                                                   |\n");
- 	printf("     |                             P L A Y E R   1          PONTOS: %i                    |\n", pontos1);
+ 	printf("     |                             P L A Y E R   1          PONTOS: %.2lf                |\n", pontos1);
  	printf("     |___________________________________________________________________________________|\n"); 
  	printf("\n\n\n"); 
 	int z;
@@ -66,7 +68,7 @@ int printTabuleiro2(char ***tabuleiro2)
 	if(!tabuleiro2) return -1;
 	printf("\n\n      ___________________________________________________________________________________\n");
  	printf("     |                                                                                   |\n");
- 	printf("     |                             P L A Y E R   2           PONTOS: %i                   |\n");
+ 	printf("     |                             P L A Y E R   2           PONTOS: %.2lf                |\n", pontos2);
  	printf("     |___________________________________________________________________________________|\n"); 
  	printf("\n\n\n"); 
 	int z;
@@ -349,7 +351,7 @@ int setArmada2(char ***tabaux2)
 				y = rand() % 15;	
 			} while(x > 13 || y > 13 || y==0 || x < 2 || tabaux2[y][x] != "   " || tabaux2[y+1][x] != "   " || tabaux2[y-1][x-1] != "   " || tabaux2[y][x-1] != "   " || tabaux2[y+1][x-1] != "   " || tabaux2[y+2][x-1] != "   " || tabaux2[y-1][x-2] != "   " || tabaux2[y][x-2] != "   " || tabaux2[y+1][x-2] != "   " || tabaux2[y+2][x-2] != "   ");
 
-			tabaux2[y][x] = "C1 ", tabaux2[y+1][x] = "C1 ", tabaux2[y-1][x-1] = "C1 ", tabaux2[y][x-1] = "C1 ", tabaux2[y+1][x-1] = "C1 ", tabaux2[y+2][x-1] = "C1 ", tabaux2[y-1][x-2] = "C1  ", tabaux2[y][x-2] = "C1  ", tabaux2[y+1][x-2] = "C1  ", tabaux2[y+2][x-2] = "C1  ";
+			tabaux2[y][x] = "C1 ", tabaux2[y+1][x] = "C1 ", tabaux2[y-1][x-1] = "C1 ", tabaux2[y][x-1] = "C1 ", tabaux2[y+1][x-1] = "C1 ", tabaux2[y+2][x-1] = "C1 ", tabaux2[y-1][x-2] = "C1 ", tabaux2[y][x-2] = "C1 ", tabaux2[y+1][x-2] = "C1 ", tabaux2[y+2][x-2] = "C1 ";
 		}
 	}
 
@@ -531,10 +533,13 @@ return 0;
 
 int acaoP1(char ***tabuleiro1, char ***tabaux1)
 {
-	char atk[4], vazio[4] = "   ", estrela[4] = " * ";
+	char atk[4], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P2 ", cour[4] = "C2 ", torp[4] = "T2 ", hidro[4] = "H2 ";
 	char letra;
 	int numero, coord, len;
+	//qdouble pontos, erro;
+	//printf("%.3lf\n", pontos1);
 
+	printf("\nJogador 1, realize sua ação!\n");
 	scanf("%s %i%c", &atk, &numero, &letra);
 
 	if(strcmp(atk, "pow\0") == 0)
@@ -554,22 +559,55 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1)
 		if(strcmp(tabaux1[number][coord], vazio) != 0) {
 			tabuleiro1[number][coord] = tabaux1[number][coord];
 
+			if(strcmp(tabuleiro1[number][coord], port_av) == 0)
+			{
+				pontos1 += 42.968;
+			}
+			else if(strcmp(tabuleiro1[number][coord], cour) == 0)
+			{
+				
+				pontos1 += 78.125;
+			}
+			else if(strcmp(tabuleiro1[number][coord], torp) == 0)
+			{
+				
+				pontos1 += 82.031;
+			}
+			else if(strcmp(tabuleiro1[number][coord], hidro) == 0)
+			{
+				pontos1 += 125.000;
+			}
+			
+			
+
 		}
 		else {
 			strcpy(tabuleiro1[number][coord], estrela);
+			if(pontos1 - 3.75 <= 0.0)
+			{
+				pontos1 = 0.0;
+			}
+			else
+			{
+				pontos1 -= 3.75;
+			}
 
 		}
-
 	}
 
+
+	return 0;
 }
 
 int acaoP2(char ***tabuleiro2, char ***tabaux2)
 {
-	char atk[4], vazio[4] = "   ", estrela[4] = " * ";
+	char atk[4], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P1 ", cour[4] = "C1 ", torp[4] = "T1 ", hidro[4] = "H1 ";
 	char letra;
 	int numero, coord, len;
+	//int ba, qa, N = 256, pt = 64;
+	//double pontos, erro;
 
+	printf("\n Jogador 2, realize sua ação!\n");
 	scanf("%s %i%c", &atk, &numero, &letra);
 
 	if(strcmp(atk, "pow\0") == 0)
@@ -589,12 +627,40 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2)
 		if(strcmp(tabaux2[number][coord], vazio) != 0) {
 			tabuleiro2[number][coord] = tabaux2[number][coord];
 
+			if(strcmp(tabaux2[number][coord], port_av) == 0)
+			{
+				pontos2 += 42.968;
+			}
+			else if(strcmp(tabaux2[number][coord], cour) == 0)
+			{
+				pontos2 += 78.125;
+			}
+			else if(strcmp(tabaux2[number][coord], torp) == 0)
+			{
+
+				pontos2 += 82.031;
+			}
+			else if(strcmp(tabaux2[number][coord], hidro) == 0)
+			{
+
+				pontos2 += 125.000;
+			}
+
 		}
 		else {
 			strcpy(tabuleiro2[number][coord], estrela);
-
+			
+			if(pontos2 - 3.75 <= 0.0)
+			{
+				pontos2 = 0.0;
+			}
+			else 
+			{
+				pontos2 -= 3.75;
+			}
 		}
 
 	}
 
+	return 0;
 }

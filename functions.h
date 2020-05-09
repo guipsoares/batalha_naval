@@ -1,7 +1,7 @@
 #ifndef _FUNCTIONS_
 #define _FUNCTIONS_
 
-int printTabuleiro1(char ***;);
+int printTabuleiro1(char ***);
 int printTabuleiro2(char ***);
 int setArmada1(char***);
 int setArmada2(char***);

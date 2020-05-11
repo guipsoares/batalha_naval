@@ -5,6 +5,10 @@
 
 char alphabet[] = {"ABCDEFGHIJKLMNOP"};
 double pontos1, pontos2;
+int contador_destruido=0;  
+int contador_destruido2=0; 
+
+
 
 // setando todos os valores do tabuleiro como vazios
 int zerandoTabuleiro(char ***tabuleiro1, char ***tabuleiro2, char ***tabaux1, char ***tabaux2)
@@ -257,7 +261,6 @@ int setArmada1(char ***tabaux1)
 
 		tabaux1[y][x] = "H2 ", tabaux1[y+1][x] = "H2 ", tabaux1[y+2][x] = "H2 ", tabaux1[y+3][x] = "H2 ", tabaux1[y][x+1] = "H2 ", tabaux1[y+1][x+1] = "H2 ", tabaux1[y+2][x+1] = "H2 ", tabaux1[y+3][x+1] = "H2 ";
 		
-
 	}  
 	// fazendo com que as casas sem nenhuma embarcação sejam agua
 
@@ -437,6 +440,9 @@ int setArmada2(char ***tabaux2)
 				tabaux2[i][j] = " * ";
 		}
 	}
+	
+	
+
 }
 
 void comoJogar(void)
@@ -504,8 +510,8 @@ int layout(void)
     printf("     |                _____________|______________________|________| |                   |\n");
     printf("     |              /_______________  __________________  |________| |_______            |\n");
     printf("     |             /_________________|                  |_|________|_|_______|           |\n");
-    printf("     |       _____/  .===.===.===.   |  BATALHA  NAVAL  |  .===.===.===.===. |____       |\n");
-    printf("     | ~ ~ ~|________________________|__________________|_________________________/~ ~ ~ |\n");
+    printf("     |      ______/  .===.===.===.   |  BATALHA  NAVAL  |  .===.===.===.===. |____       |\n");
+    printf("     | ~ ~ \\________________________|__________________|_________________________/ ~ ~ ~ |\n");
     printf("     | ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ |\n");
     printf("     | ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ |\n");
     printf("     |___________________________________________________________________________________|\n");
@@ -531,17 +537,41 @@ return 0;
 
 }
 
-int acaoP1(char ***tabuleiro1, char ***tabaux1)
+int playervenceu(int *playervencedor)
 {
-	char atk[4], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P2 ", cour[4] = "C2 ", torp[4] = "T2 ", hidro[4] = "H2 ";
-	char letra;
-	int numero, coord, len;
-	//qdouble pontos, erro;
-	//printf("%.3lf\n", pontos1);
+	printf("      ___________________________________________________________________________________\n");
+	printf("     |                                                                                   |\n");
+	printf("     |                                                                                   |\n");
+	printf("     |                          ____________________________                             |\n");
+	printf("     |                         |____________________________|                            |\n");
+	printf("     |                         \\__                        __/                            |\n");
+	printf("     |                            \\__                  __/                               |\n");
+	printf("     |                                 \\            /                                    |\n");
+	printf("     |                                  \\          /                                     |\n");          //esse trofeu ta o crime
+	printf("     |                                   \\        /                                      |\n");		  //parece uma caixa dagua
+	printf("     |                                    \\      /                                       |\n");		  //vou fazer um decente com o tempo
+	printf("     |                                     ||  ||                                        |\n");
+	printf("     |                                     ||  ||                                        |\n");
+	printf("     |                        _____________||__||______________                          |\n");
+	printf("     |                       |   P L A Y E R %d V E N C E U     |                         |\n",*playervencedor);
+	printf("     |                       |_________________________________|                         |\n");
+	printf("     |___________________________________________________________________________________|\n");
+}
 
-	printf("\nJogador 1, realize sua ação!\n");
+int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y)
+{
+	char atk[10], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P2 ", cour[4] = "C2 ", torp[4] = "T2 ", hidro[4] = "H2 ";
+	char letra='Z';
+	int numero=0, coord, len;
+	int i;     
+	int playervencedor,o=0;                                           //defini um contador (contador_destruido) pra saber quantas 'partes' de embarcacoes foram destruidas                                                               //hora que o contador chega a 64 temos um vencedor
+	//qdouble pontos, erro;											  //'o' serve pra desbugar o hidroaviao
+	//printf("%.3lf\n", pontos1);									  //quando acertava outro barco dava como o hidroaviao acertado e acrescentava 2 ao contador
+
+	printf("\n------>Jogador 1, realize sua acao:\n------>");         //coloquei uns print pra eu entender melhor aonde o tiro tava acertando
 	scanf("%s %i%c", &atk, &numero, &letra);
-
+	
+	
 	if(strcmp(atk, "pow\0") == 0)
 	{
 		int number = numero - 1;
@@ -558,6 +588,7 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1)
 
 		if(strcmp(tabaux1[number][coord], estrela) == 0)
 		{
+			printf("Voce acertou a agua!");
 			if(pontos1 - 3.75 <= 0.0)
 			{
 				pontos1 = 0.0;
@@ -574,46 +605,91 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1)
 
 			if(strcmp(tabaux1[number][coord], port_av) == 0)
 			{
-				pontos1 += 42.968;
+				if(strcmp(tabuleiro1[number][coord], vazio) == 0)
+				{
+					pontos1 += 42.968;
+					if(o==0)contador_destruido++;
+					printf("\n\n------>PORTA-AVIOES INIMIGO ATINGIDO\n");
+					o=1;       
+				}  else printf("Local ja atacado. perdeu a vez!!\n");
 			}
 			else if(strcmp(tabaux1[number][coord], cour) == 0)
 			{
-				
-				pontos1 += 78.125;
+				if(strcmp(tabuleiro1[number][coord], vazio) == 0)
+				{
+					pontos1 += 78.125;
+					if(o==0)contador_destruido++;
+					printf("\n\n------>COURACADO INIMIGO ATINGIDO\n");
+					o=1;
+				} else printf("Local ja atacado. perdeu a vez!!\n");
 			}
 			else if(strcmp(tabaux1[number][coord], torp) == 0)
 			{
-				
-				pontos1 += 82.031;
+				if(strcmp(tabuleiro1[number][coord], vazio) == 0)
+				{
+					pontos1 += 82.031;
+					if(o==0)contador_destruido++;
+					printf("\n------>TORPEDEIRO INIMIGO ATINGIDO\n");
+					o=1;
+				} else printf("Local ja atacado. perdeu a vez!!\n");			
 			}
 			else if(strcmp(tabaux1[number][coord], hidro) == 0)
 			{
-				pontos1 += 125.000;
+				if(strcmp(tabuleiro1[number][coord], vazio) == 0)
+				{
+					pontos1 += 125.000;
+					if(o==0)
+					{
+						contador_destruido++;
+						printf("\n\n------>HIDROAVIAO INIMIGO ATINGIDO\n");
+						o=1;
+					}
+				} else printf("Local ja atacado. perdeu a vez!!\n");
 			}
 			
 
-			
-
 		} 
+		
+			if(contador_destruido==64)
+			{
+		 	  playervencedor=1;                                                //aqui temos um vencedor
+		 	  playervenceu(&playervencedor); 						 			//funcao do trofeuzinho
+			   *y=1;                                                  			//y=1 serve para sair do loop na main
+			}	
+		
 		tabuleiro1[number][coord] = tabaux1[number][coord];
-
+		
+		//printf("%d",contador_destruido);
 	}
+
+	/*if(strcmp(atk, "reset\0") == 0)
+	{
+		printf("lerigou\n");
+	} */
+
 
 
 	return 0;
 }
 
-int acaoP2(char ***tabuleiro2, char ***tabaux2)
+int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y)
 {
-	char atk[4], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P1 ", cour[4] = "C1 ", torp[4] = "T1 ", hidro[4] = "H1 ";
+	char atk[10], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P1 ", cour[4] = "C1 ", torp[4] = "T1 ", hidro[4] = "H1 ";
 	char letra;
 	int numero, coord, len;
+	int playervencedor, o=0;
 	//int ba, qa, N = 256, pt = 64;
 	//double pontos, erro;
 
-	printf("\n Jogador 2, realize sua ação!\n");
+	printf("\n------>Jogador 2, realize sua acao:\n------>");
 	scanf("%s %i%c", &atk, &numero, &letra);
 
+	//if(strcmp(atk,"ajuda\0") == 0)
+	//{
+	//	comandos();
+	//	acaoP2(tabuleiro2, tabaux2);
+	//}
+	
 	if(strcmp(atk, "pow\0") == 0)
 	{
 		int number = numero - 1;
@@ -628,9 +704,9 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2)
 			}
 		}
 
-
 		if(strcmp(tabaux2[number][coord], estrela) == 0)
 		{
+			printf("\n\n------>Voce acertou a agua!");
 			if(pontos2 - 3.75 <= 0.0)
 			{
 				pontos2 = 0.0;
@@ -647,29 +723,59 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2)
 
 			if(strcmp(tabaux2[number][coord], port_av) == 0)
 			{
-				pontos2 += 42.968;
+				if(strcmp(tabuleiro2[number][coord], vazio) == 0)
+				{
+					pontos2 += 42.968;
+					if(o==0)contador_destruido2++;
+					printf("\n\n------>PORTA-AVIOES INIMIGO ATINGIDO\n");
+					o=1;       
+				}  else printf("Local ja atacado. perdeu a vez!!\n");
 			}
 			else if(strcmp(tabaux2[number][coord], cour) == 0)
 			{
-				
-				pontos2 += 78.125;
+				if(strcmp(tabuleiro2[number][coord], vazio) == 0)
+				{
+					pontos2 += 78.125;
+					if(o==0)contador_destruido2++;
+					printf("\n\n------>COURACADO INIMIGO ATINGIDO\n");
+					o=1;
+				} else printf("Local ja atacado. perdeu a vez!!\n");
 			}
 			else if(strcmp(tabaux2[number][coord], torp) == 0)
 			{
-				
-				pontos2 += 82.031;
+				if(strcmp(tabuleiro2[number][coord], vazio) == 0)
+				{
+					pontos2 += 82.031;
+					if(o==0)contador_destruido2++;
+					printf("\n------>TORPEDEIRO INIMIGO ATINGIDO\n");
+					o=1;
+				} else printf("Local ja atacado. perdeu a vez!!\n");			
 			}
 			else if(strcmp(tabaux2[number][coord], hidro) == 0)
 			{
-				pontos2 += 125.000;
+				if(strcmp(tabuleiro2[number][coord], vazio) == 0)
+				{
+					pontos2 += 125.000;
+					if(o==0)
+					{
+						contador_destruido2++;
+						printf("\n\n------>HIDROAVIAO INIMIGO ATINGIDO\n");
+						o=1;
+					}
+				} else printf("Local ja atacado. perdeu a vez!!\n");
 			}
 			
 
-			
-
 		} 
+		
 		tabuleiro2[number][coord] = tabaux2[number][coord];
-
+		
+		if(contador_destruido2==64)
+			{
+			playervencedor=2;             
+			playervenceu(&playervencedor);               
+			*y=1;                           
+			}	
 	}
 
 	return 0;

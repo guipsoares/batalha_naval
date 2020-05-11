@@ -1,23 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "functions.h"
+  
 
-//para compilar: gcc -o main main.c functions.c
+//para compilar: gcc -o main main.c functions.c 
 
 
-int main(int argc, char const *argv[])
-{
-	int opcao=0, menu=0; //Usado no menu do jogo
+int main(int argc, char const *argv[]) 
+{ 
+	int opcao=0, menu=0; //Usado no menu do jogoo
+	int y=0; //usado no loop 
+	
+ 	//criacao das matrizes de strings tabuleiro, com uso de alocação dinamic
+	char ***tabuleiro1 = malloc(16 * sizeof(char**));  
 
-	//criacao das matrizes de strings tabuleiro, com uso de alocação dinamica
-	char ***tabuleiro1 = malloc(16 * sizeof(char**));
+	for(int i = 0; i < 16; i++)  
+		tabuleiro1[i] = malloc(16 * sizeof(char*));  
+  
+	char ***tabuleiro2 = malloc(16 * sizeof(char**)); 
 
-	for(int i = 0; i < 16; i++) 
-		tabuleiro1[i] = malloc(16 * sizeof(char*));
-
-	char ***tabuleiro2 = malloc(16 * sizeof(char**));
-
-	for(int i = 0; i < 16; i++) 
+	for(int i = 0; i < 16; i++)  
 		tabuleiro2[i] = malloc(16 * sizeof(char*));
 
 	char ***tabaux1 = malloc(16 * sizeof(char**));
@@ -27,29 +29,34 @@ int main(int argc, char const *argv[])
 
 	char ***tabaux2 = malloc(16 * sizeof(char**));
 
-	for(int i = 0; i < 16; i++) 
-		tabaux2[i] = malloc(16 * sizeof(char*));
- 	//
+	for(int i = 0; i < 16; i++)  
+		tabaux2[i] = malloc(16 * sizeof(char*)); 
+ 	 
+ 
+	  
 
-	
-
-	do{	
-			system("clear");
+	do{	  
+			system("clear"); 
 			layout();
-		 	scanf("%i", &opcao);
-			switch(opcao)
+		 	scanf("%i", &opcao);    
+			switch(opcao)      
 			{
-				case 1: 
- 					// pre jogo
-					zerandoTabuleiro(tabuleiro1, tabuleiro2, tabaux1, tabaux2);
-					setArmada1(tabaux1);
-					setArmada2(tabaux2);
-
-					for(int i = 0; i < 5; i++)
+				case 1:     
+ 					// pre jogoo
+					zerandoTabuleiro(tabuleiro1, tabuleiro2, tabaux1, tabaux2); 
+					setArmada1(tabaux1);  
+					setArmada2(tabaux2); 
+					  
+					
+					for(int i=0;i<256;i++)  
 					{
-						acaoP1(tabuleiro1, tabaux1);
+						acaoP1(tabuleiro1, tabaux1, &y); 
+						if(y==1)	
+							break;
 						printTabuleiro1(tabuleiro1);
-						acaoP2(tabuleiro2, tabaux2);
+						acaoP2(tabuleiro2, tabaux2, &y);
+						if(y==1)	
+							break;
 						printTabuleiro2(tabuleiro2);
 					}
 
@@ -58,9 +65,9 @@ int main(int argc, char const *argv[])
 					scanf("%i", &menu);
 					if(menu==0){
 						break;
-					}
-				;
-
+					} 
+				; 
+ 
 				case 2:
 					system("sleep 01");
 					comoJogar();
@@ -68,16 +75,16 @@ int main(int argc, char const *argv[])
 					scanf("%i", &menu);
 					if(menu==0){
 						break;
-					}
+					} 
 					;
-
+  
 				case 3:
 					system("sleep 01");
 					desenvolvedores();
 					printf("Digite 0 e tecle ENTER para retornar ao menu principal.\n");
 					scanf("%i", &menu);
 					if(menu==0){
-						break;
+						break;  
 					}
 
 				case 4:
@@ -86,12 +93,12 @@ int main(int argc, char const *argv[])
 					printf("Digite 0 e tecle ENTER para retornar ao menu principal.\n");
 					scanf("%i", &menu);
 					if(menu==0){
-						break;
+						break; 
 					}
 				case 5:
-					system("sleep 01");
+					system("sleep 01"); 
 					printf("Goodbye!\n");
-					break;
+					break; 
 			}
 
 	} while(opcao!=5 || opcao<=0 || opcao>5);

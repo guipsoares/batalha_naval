@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "functions.h"
+#include <time.h>
   
 
 //para compilar: gcc -o main main.c functions.c 
@@ -37,8 +38,10 @@ int main(int argc, char const *argv[])
 
 	do{	  
 			system("clear"); 
+			system("clear");
 			layout();
 		 	scanf("%i", &opcao);    
+
 			switch(opcao)      
 			{
 				case 1:     
@@ -105,6 +108,12 @@ int main(int argc, char const *argv[])
 			}
 
 	} while(opcao!=5 || opcao<=0 || opcao>5);
-	
+
+
+	free(tabuleiro1);
+	free(tabuleiro2);
+	free(tabaux1);
+	free(tabuleiro2);
+
 	return 0;
 }

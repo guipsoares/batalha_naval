@@ -2,6 +2,7 @@
 #include "functions.h"
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 char alphabet[] = {"ABCDEFGHIJKLMNOP"};
 double pontos1, pontos2;
@@ -562,7 +563,7 @@ int playervenceu(int *playervencedor)
 
 int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char ***tabaux2, int *w)
 {
-	char atk[10], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P2 ", cour[4] = "C2 ", torp[4] = "T2 ", hidro[4] = "H2 ";
+	char atk[20], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P2 ", cour[4] = "C2 ", torp[4] = "T2 ", hidro[4] = "H2 ";
 	char letra='Z';
 	int numero=0, coord, len;
 	int i;     
@@ -688,6 +689,29 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 		*w = 256;
 		*y = 1;
 	}
+
+	if(atk[0] == 'a' && atk[1] == 'j' && atk[2] == 'u')
+	{
+		printf("Os seguintes comandos estao disponiveis para serem utilizados:\n\n");
+		printf("---> sair - ira te encaminhar ao menu principal.\n");
+		printf("---> reset - ira zerar o tabuleiro e os pontos, armando uma nova armada para cada jogador.\n");
+		printf("---> ajuda - eh onde voce esta =)\n");
+		printf("---> acaso - inicia um novo tabuleiro aleatorio, conserva seus pontos e tempo no relogio.\n");
+		printf("---> gravar {nome do arquivo} - salva o jogo em um arquivo com o nome tabuleiro-{timestamp}.txt (timestamp eh um numero inteiro que indica a data, hora, minuto e segundo de um sistema computacional).\n");
+		printf("---> carregar {nome do arquivo}  - carrega o estado do tabuleiro, pontuacao e o tempo no relogio de quando o jogo foi salvo.\n");
+		system("sleep 04");
+	}
+
+	if(atk[0] == 'a' && atk[1] == 'c' && atk[2] == 'a')
+	{
+		int aux1 = pontos1;
+		int aux2 = pontos2;
+		zerandoTabuleiro(tabuleiro1, tabuleiro2, tabaux1, tabaux2);
+		setArmada1(tabaux1);  
+		setArmada2(tabaux2); 
+		pontos1 = aux1;
+		pontos2 = aux2;
+	}	
  
 
 
@@ -696,7 +720,7 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 
 int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char ***tabaux1, int *w)
 {
-	char atk[10], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P1 ", cour[4] = "C1 ", torp[4] = "T1 ", hidro[4] = "H1 ";
+	char atk[20], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P1 ", cour[4] = "C1 ", torp[4] = "T1 ", hidro[4] = "H1 ";
 	char letra;
 	int numero, coord, len;
 	int playervencedor, o=0;
@@ -824,6 +848,48 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 		*w = 256;
 		*y = 1;
 	}
+
+	if(atk[0] == 'a' && atk[1] == 'j' && atk[2] == 'u')
+	{
+		printf("Os seguintes comandos estao disponiveis para serem utilizados:\n\n");
+		printf("---> sair - ira te encaminhar ao menu principal.\n");
+		printf("---> reset - ira zerar o tabuleiro e os pontos, armando uma nova armada para cada jogador.\n");
+		printf("---> ajuda - eh onde voce esta =)\n");
+		printf("---> acaso - inicia um novo tabuleiro aleatorio, conserva seus pontos e tempo no relogio.\n");
+		printf("---> gravar {nome do arquivo} - salva o jogo em um arquivo com o nome tabuleiro-{timestamp}.txt (timestamp eh um numero inteiro que indica a data, hora, minuto e segundo de um sistema computacional).\n");
+		printf("---> carregar {nome do arquivo} - carrega o estado do tabuleiro, pontuacao e o tempo no relogio de quando o jogo foi salvo.\n");
+		system("---> sleep 04");
+	}
+
+	if(atk[0] == 'a' && atk[1] == 'c' &&  atk[2] == 'a')
+	{
+		int aux1 = pontos1;
+		int aux2 = pontos2;
+		zerandoTabuleiro(tabuleiro1, tabuleiro2, tabaux1, tabaux2);
+		setArmada1(tabaux1);  
+		setArmada2(tabaux2); 
+		pontos1 = aux1;
+		pontos2 = aux2;
+	}	
+
+	/*if(atk[0] == 'g' && atk[1] == 'r' && atk[2] == 'a')
+	{
+		FILE *create_arq;
+		char *arq_name[33];
+		
+   		char *z = (char*) time(NULL);
+
+   		strcpy(arq_name, "tabuleiro_");
+   		strcat(arq_name, z);
+   		strcat(arq_name, ".txt");
+
+   		printf("%s\n", arq_name);
+
+
+
+   		fclose(create_arq);
+	}  */
+	
 
 	return 0;
 }

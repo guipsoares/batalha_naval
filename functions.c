@@ -23,6 +23,8 @@ int zerandoTabuleiro(char ***tabuleiro1, char ***tabuleiro2, char ***tabaux1, ch
 			tabaux2[i][j] = "   ";
 			pontos1 = 0.0;
 			pontos2 = 0.0;
+			contador_destruido = 0;
+			contador_destruido2 = 0;
 		}
     }
 }
@@ -558,7 +560,7 @@ int playervenceu(int *playervencedor)
 	printf("     |___________________________________________________________________________________|\n");
 }
 
-int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y)
+int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char ***tabaux2, int *w)
 {
 	char atk[10], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P2 ", cour[4] = "C2 ", torp[4] = "T2 ", hidro[4] = "H2 ";
 	char letra='Z';
@@ -569,11 +571,23 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y)
 	//printf("%.3lf\n", pontos1);									  //quando acertava outro barco dava como o hidroaviao acertado e acrescentava 2 ao contador
 
 	printf("\n------>Jogador 1, realize sua acao:\n------>");         //coloquei uns print pra eu entender melhor aonde o tiro tava acertando
-	scanf("%s %i%c", &atk, &numero, &letra);
+	setbuf(stdin, NULL);
+	fgets(atk, 10, stdin);
 	
-	
-	if(strcmp(atk, "pow\0") == 0)
+	if(atk[0] == 'p' && atk[1] == 'o' && atk[2] == 'w')
 	{
+		if(atk[6] == '\n')
+		{
+			numero = atk[4] - '0';
+			letra = (char) atk[5];
+		}
+		else if(atk[7] == '\n')
+		{
+			numero =  atk[5] - '0';
+			letra = (char) atk[6];
+			numero = numero + 10;
+		}
+
 		int number = numero - 1;
 		len = strlen(alphabet);
 
@@ -584,8 +598,8 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y)
 				coord = i;
 				break;
 			}
-		}
-
+		} 
+ 
 		if(strcmp(tabaux1[number][coord], estrela) == 0)
 		{
 			printf("Voce acertou a agua!");
@@ -662,17 +676,25 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y)
 		//printf("%d",contador_destruido);
 	}
 
-	/*if(strcmp(atk, "reset\0") == 0)
+	if(atk[0] == 'r' && atk[1] == 'e' && atk[2] == 's')
 	{
-		printf("lerigou\n");
-	} */
+		zerandoTabuleiro(tabuleiro1, tabuleiro2, tabaux1, tabaux2);
+		setArmada1(tabaux1);  
+		setArmada2(tabaux2); 
+	}
 
+	if(atk[0] == 's' && atk[1] == 'a' && atk[2] == 'i' && atk[3] == 'r')
+	{
+		*w = 256;
+		*y = 1;
+	}
+ 
 
 
 	return 0;
 }
 
-int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y)
+int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char ***tabaux1, int *w)
 {
 	char atk[10], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P1 ", cour[4] = "C1 ", torp[4] = "T1 ", hidro[4] = "H1 ";
 	char letra;
@@ -682,16 +704,28 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y)
 	//double pontos, erro;
 
 	printf("\n------>Jogador 2, realize sua acao:\n------>");
-	scanf("%s %i%c", &atk, &numero, &letra);
-
+	setbuf(stdin, NULL);
+	fgets(atk, 10, stdin);
 	//if(strcmp(atk,"ajuda\0") == 0)
 	//{
 	//	comandos();
 	//	acaoP2(tabuleiro2, tabaux2);
 	//}
 	
-	if(strcmp(atk, "pow\0") == 0)
+	if(atk[0] == 'p' && atk[1] == 'o' && atk[2] == 'w') 
 	{
+		if(atk[6] == '\n')
+		{
+			numero = atk[4] - '0';
+			letra = (char) atk[5];
+		}
+		else if(atk[7] == '\n')
+		{
+			numero =  atk[5] - '0';
+			letra = (char) atk[6];
+			numero = numero + 10;
+		}
+
 		int number = numero - 1;
 		len = strlen(alphabet);
 
@@ -776,6 +810,19 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y)
 			playervenceu(&playervencedor);               
 			*y=1;                           
 			}	
+	}
+
+	if(atk[0] == 'r' && atk[1] == 'e' && atk[2] == 's')
+	{
+		zerandoTabuleiro(tabuleiro1, tabuleiro2, tabaux1, tabaux2);
+		setArmada1(tabaux1);  
+		setArmada2(tabaux2); 
+	}
+
+	if(atk[0] == 's' && atk[1] == 'a' && atk[2] == 'i' && atk[3] == 'r')
+	{
+		*w = 256;
+		*y = 1;
 	}
 
 	return 0;

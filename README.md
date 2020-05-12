@@ -9,3 +9,4 @@ Leonardo Zaniboni (leonardozaniboni@usp.br).
 Agradecimento especial aos monitores Ana Luisa Costa e Erikson Júlio Aguiar.
 
 
+Para compilar: gcc -o main main.c functions.c 

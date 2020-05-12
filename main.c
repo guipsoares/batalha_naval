@@ -46,18 +46,21 @@ int main(int argc, char const *argv[])
 					zerandoTabuleiro(tabuleiro1, tabuleiro2, tabaux1, tabaux2); 
 					setArmada1(tabaux1);  
 					setArmada2(tabaux2); 
+					y=0;
 					  
 					
 					for(int i=0;i<256;i++)  
 					{
-						acaoP1(tabuleiro1, tabaux1, &y); 
-						if(y==1)	
+						acaoP1(tabuleiro1, tabaux1, &y, tabuleiro2, tabaux2, &i); 
+						if(y == 1)	
 							break;
 						printTabuleiro1(tabuleiro1);
-						acaoP2(tabuleiro2, tabaux2, &y);
-						if(y==1)	
+						system("sleep 1");
+						acaoP2(tabuleiro2, tabaux2, &y, tabuleiro1, tabaux1, &i);
+						if(y == 1)	
 							break;
 						printTabuleiro2(tabuleiro2);
+						system("sleep 1");
 					}
 
 

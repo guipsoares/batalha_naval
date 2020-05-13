@@ -872,23 +872,34 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 		pontos2 = aux2;
 	}	
 
-	/*if(atk[0] == 'g' && atk[1] == 'r' && atk[2] == 'a')
+	if(atk[0] == 'g' && atk[1] == 'r' && atk[2] == 'a')
 	{
+		printf("biroliro\n");
 		FILE *create_arq;
-		char *arq_name[33];
-		
-   		char *z = (char*) time(NULL);
+		char data[32] = "";
 
-   		strcpy(arq_name, "tabuleiro_");
-   		strcat(arq_name, z);
-   		strcat(arq_name, ".txt");
+		strcat(data, "tabuleiro_");
 
-   		printf("%s\n", arq_name);
+		char data_seg[16] = "";
+		char data_tempo_local[16] = "";
+		time_t segundos = time(NULL);
+		struct tm *dh = localtime(&segundos);
 
+		sprintf(data_seg, "%ld", segundos);
 
+		sprintf(data_tempo_local, "%i-%i-%i_%i:%i:%i", dh->tm_mday, dh->tm_mon+1, dh->tm_year+1900, dh->tm_hour, dh->tm_min, dh->tm_sec);
+   		
+		strcat(data, data_tempo_local);
+		strcat(data, ".txt");
+
+		create_arq = fopen(data, "w");
+		fprintf(create_arq, printTabuleiro1(tabuleiro1));
+		fprintf(create_arq, printTabuleiro2(tabuleiro2));
+		fprintf(create_arq, "Pontos jogador 1: %lf\n", pontos1);
+		fprintf(create_arq, "Pontos jogador 2: %lf\n", pontos2);
 
    		fclose(create_arq);
-	}  */
+	}  
 	
 
 	return 0;

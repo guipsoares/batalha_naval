@@ -759,7 +759,7 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 		char tab[32] = "";
 		//char data[35] = "";
 
-		for(int i = 0; i < 31; i++)
+		for(int i = 0; i < 32; i++)
 		{
 			tab[i] = atk[i+9];
 		} 
@@ -768,7 +768,7 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 		open_file = fopen(tab, "r");
 
 	
-			fscanf(open_file, "%lf %lf", &pontos1, &pontos2);
+			//fscanf(open_file, "%lf %lf", &pontos1, &pontos2);
 		
 
 		for(int i = 0; i < 16; i++)
@@ -778,6 +778,8 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 				fscanf(open_file, "%s %s %s %s ", &tabaux1[i][j], &tabaux2[i][j], &tabuleiro1[i][j], &tabuleiro2[i][j]);
 			}
 		}
+
+		fclose(open_file);
 
 	}
 
@@ -987,27 +989,29 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 	if(atk[0] == 'c' && atk[1] == 'a' && atk[2] == 'r' && atk[3] == 'r')
 	{
 		char tab[32] = "";
-		//char data[35] = "";
 
-		for(int i = 0; i < 31; i++)
+		for(int i = 0; i < 32; i++)
 		{
 			tab[i] = atk[i+9];
 		} 
+
+		printf("%s\n", tab);
 		
 		FILE *open_file;
 
 		open_file = fopen(tab, "r");
 
-		fscanf(open_file, "%lf %lf", &pontos1, &pontos2);
+		//fscanf(open_file, "%lf %lf", &pontos1, &pontos2);
 
-		for(int i = 1; i < 17; i++)
+		for(int i = 0; i < 16; i++)
 		{
 			for(int j = 0; j < 16; j++)
 			{
 				fscanf(open_file, "%s %s %s %s", &tabaux1[i][j], &tabaux2[i][j], &tabuleiro1[i][j], &tabuleiro2[i][j]);
 			}
-		}
+		} 
 
+		fclose(open_file);
 	}
 	
 

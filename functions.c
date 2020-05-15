@@ -735,8 +735,8 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 
 		create_arq = fopen(data, "w");
 
-		//fprintf(create_arq, "Pontos jogador 1: %.2lf\n", pontos1);
-		//fprintf(create_arq, "Pontos jogador 2: %.2lf\n", pontos2);
+		fprintf(create_arq, "%.2lf %.2lf", pontos1, pontos2);
+
 		
 		for(int i = 0; i < 16; i++)
 		{
@@ -767,11 +767,9 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 
 		open_file = fopen(tab, "r");
 
-	/*	for(int i = 0; i < 2; i++)
-		{
-			fscanf(open_file, "Pontos jogador 1: %lf", &pontos1);
-			fscanf(open_file, "Pontos jogador 2: %lf\n", &pontos2);
-		} */
+	
+			fscanf(open_file, "%lf %lf", &pontos1, &pontos2);
+		
 
 		for(int i = 0; i < 16; i++)
 		{
@@ -967,8 +965,7 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 
 		create_arq = fopen(data, "w");
 
-	//	fprintf(create_arq, "Pontos jogador 1: %.2lf\n", pontos1);
-	//	fprintf(create_arq, "Pontos jogador 2: %.2lf\n", pontos2);
+		fprintf(create_arq, "%.2lf %.2lf", pontos1, pontos2);
 
 		for(int i = 0; i < 16; i++)
 		{
@@ -1001,13 +998,9 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 
 		open_file = fopen(tab, "r");
 
-	/*	for(int i = 0; i < 2; i++)
-		{
-			fscanf(open_file, "Pontos jogador 1: %lf", &pontos1);
-			fscanf(open_file, "Pontos jogador 2: %lf\n", &pontos2);
-		} */
+		fscanf(open_file, "%lf %lf", &pontos1, &pontos2);
 
-		for(int i = 0; i < 16; i++)
+		for(int i = 1; i < 17; i++)
 		{
 			for(int j = 0; j < 16; j++)
 			{

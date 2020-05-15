@@ -563,7 +563,7 @@ int playervenceu(int *playervencedor)
 
 int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char ***tabaux2, int *w)
 {
-	char atk[20], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P2 ", cour[4] = "C2 ", torp[4] = "T2 ", hidro[4] = "H2 ";
+	char atk[42], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P2 ", cour[4] = "C2 ", torp[4] = "T2 ", hidro[4] = "H2 ";
 	char letra='Z';
 	int numero=0, coord, len;
 	int i;     
@@ -573,7 +573,7 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 
 	printf("\n------>Jogador 1, realize sua acao:\n------>");         //coloquei uns print pra eu entender melhor aonde o tiro tava acertando
 	setbuf(stdin, NULL);
-	fgets(atk, 10, stdin);
+	fgets(atk, 42, stdin);
 	
 	if(atk[0] == 'p' && atk[1] == 'o' && atk[2] == 'w')
 	{
@@ -674,7 +674,6 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 		
 		tabuleiro1[number][coord] = tabaux1[number][coord];
 		
-		//printf("%d",contador_destruido);
 	}
 
 	if(atk[0] == 'r' && atk[1] == 'e' && atk[2] == 's')
@@ -713,14 +712,85 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 		pontos2 = aux2;
 	}	
  
+	if(atk[0] == 'g' && atk[1] == 'r' && atk[2] == 'a')
+	{
+		char data[42] = "";
 
+		strcat(data, "tabuleiro_");
+
+
+		char data_seg[16] = "";
+		char data_tempo_local[16] = "";
+		time_t segundos = time(NULL);
+		struct tm *dh = localtime(&segundos);
+
+		sprintf(data_seg, "%ld", segundos);
+
+		sprintf(data_tempo_local, "%i-%i-%i_%i:%i:%i", dh->tm_mday, dh->tm_mon+1, dh->tm_year+1900, dh->tm_hour, dh->tm_min, dh->tm_sec);
+   		
+		strcat(data, data_tempo_local);
+		strcat(data, ".txt");
+
+		FILE *create_arq;
+
+		create_arq = fopen(data, "w");
+
+		//fprintf(create_arq, "Pontos jogador 1: %.2lf\n", pontos1);
+		//fprintf(create_arq, "Pontos jogador 2: %.2lf\n", pontos2);
+		
+		for(int i = 0; i < 16; i++)
+		{
+			for(int j = 0; j < 16; j++)
+			{
+				fprintf(create_arq, "%s ", tabaux1[i][j]);
+				fprintf(create_arq, "%s ", tabaux2[i][j]);
+				fprintf(create_arq, "%s ", tabuleiro1[i][j]);
+				fprintf(create_arq, "%s ", tabuleiro2[i][j]);
+			}
+
+			fprintf(create_arq, "\n");
+		}
+
+   		fclose(create_arq);
+	}  
+
+	if(atk[0] == 'c' && atk[1] == 'a' && atk[2] == 'r' && atk[3] == 'r')
+	{
+		char tab[32] = "";
+		//char data[35] = "";
+
+		for(int i = 0; i < 31; i++)
+		{
+			tab[i] = atk[i+9];
+		} 
+		FILE *open_file;
+
+		open_file = fopen(tab, "r");
+
+	/*	for(int i = 0; i < 2; i++)
+		{
+			fscanf(open_file, "Pontos jogador 1: %lf", &pontos1);
+			fscanf(open_file, "Pontos jogador 2: %lf\n", &pontos2);
+		} */
+
+		for(int i = 0; i < 16; i++)
+		{
+			for(int j = 0; j < 16; j++)
+			{
+				fscanf(open_file, "%s %s %s %s ", &tabaux1[i][j], &tabaux2[i][j], &tabuleiro1[i][j], &tabuleiro2[i][j]);
+			}
+		}
+
+	}
 
 	return 0;
 }
 
+
+
 int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char ***tabaux1, int *w)
 {
-	char atk[20], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P1 ", cour[4] = "C1 ", torp[4] = "T1 ", hidro[4] = "H1 ";
+	char atk[42], vazio[4] = "   ", estrela[4] = " * ", port_av[4] = "P1 ", cour[4] = "C1 ", torp[4] = "T1 ", hidro[4] = "H1 ";
 	char letra;
 	int numero, coord, len;
 	int playervencedor, o=0;
@@ -729,7 +799,7 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 
 	printf("\n------>Jogador 2, realize sua acao:\n------>");
 	setbuf(stdin, NULL);
-	fgets(atk, 10, stdin);
+	fgets(atk, 42, stdin);
 	//if(strcmp(atk,"ajuda\0") == 0)
 	//{
 	//	comandos();
@@ -872,13 +942,14 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 		pontos2 = aux2;
 	}	
 
+
+	// salvando uma partida
 	if(atk[0] == 'g' && atk[1] == 'r' && atk[2] == 'a')
 	{
-		printf("biroliro\n");
-		FILE *create_arq;
-		char data[32] = "";
+		char data[42] = "";
 
 		strcat(data, "tabuleiro_");
+
 
 		char data_seg[16] = "";
 		char data_tempo_local[16] = "";
@@ -892,14 +963,59 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 		strcat(data, data_tempo_local);
 		strcat(data, ".txt");
 
+		FILE *create_arq;
+
 		create_arq = fopen(data, "w");
-		fprintf(create_arq, printTabuleiro1(tabuleiro1));
-		fprintf(create_arq, printTabuleiro2(tabuleiro2));
-		fprintf(create_arq, "Pontos jogador 1: %lf\n", pontos1);
-		fprintf(create_arq, "Pontos jogador 2: %lf\n", pontos2);
+
+	//	fprintf(create_arq, "Pontos jogador 1: %.2lf\n", pontos1);
+	//	fprintf(create_arq, "Pontos jogador 2: %.2lf\n", pontos2);
+
+		for(int i = 0; i < 16; i++)
+		{
+			for(int j = 0; j < 16; j++)
+			{
+				fprintf(create_arq, "%s ", tabaux1[i][j]);
+				fprintf(create_arq, "%s ", tabaux2[i][j]);
+				fprintf(create_arq, "%s ", tabuleiro1[i][j]);
+				fprintf(create_arq, "%s ", tabuleiro2[i][j]);
+			}
+
+			fprintf(create_arq, "\n");	
+		}
 
    		fclose(create_arq);
 	}  
+
+	//carregando uma partida previamente salva
+	if(atk[0] == 'c' && atk[1] == 'a' && atk[2] == 'r' && atk[3] == 'r')
+	{
+		char tab[32] = "";
+		//char data[35] = "";
+
+		for(int i = 0; i < 31; i++)
+		{
+			tab[i] = atk[i+9];
+		} 
+		
+		FILE *open_file;
+
+		open_file = fopen(tab, "r");
+
+	/*	for(int i = 0; i < 2; i++)
+		{
+			fscanf(open_file, "Pontos jogador 1: %lf", &pontos1);
+			fscanf(open_file, "Pontos jogador 2: %lf\n", &pontos2);
+		} */
+
+		for(int i = 0; i < 16; i++)
+		{
+			for(int j = 0; j < 16; j++)
+			{
+				fscanf(open_file, "%s %s %s %s", &tabaux1[i][j], &tabaux2[i][j], &tabuleiro1[i][j], &tabuleiro2[i][j]);
+			}
+		}
+
+	}
 	
 
 	return 0;

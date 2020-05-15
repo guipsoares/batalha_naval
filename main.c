@@ -37,7 +37,6 @@ int main(int argc, char const *argv[])
 	  
 
 	do{	  
-			system("clear"); 
 			system("clear");
 			layout();
 		 	scanf("%i", &opcao);    
@@ -58,12 +57,12 @@ int main(int argc, char const *argv[])
 						if(y == 1)	
 							break;
 						printTabuleiro1(tabuleiro1);
-						system("sleep 1");
+						system("sleep 0.5");
 						acaoP2(tabuleiro2, tabaux2, &y, tabuleiro1, tabaux1, &i);
 						if(y == 1)	
 							break;
 						printTabuleiro2(tabuleiro2);
-						system("sleep 1");
+						system("sleep 0.5");
 					}
 
 
@@ -113,7 +112,7 @@ int main(int argc, char const *argv[])
 	free(tabuleiro1);
 	free(tabuleiro2);
 	free(tabaux1);
-	free(tabuleiro2);
+	free(tabaux2);
 
 	return 0;
 }

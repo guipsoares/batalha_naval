@@ -18,10 +18,10 @@ int zerandoTabuleiro(char ***tabuleiro1, char ***tabuleiro2, char ***tabaux1, ch
 	{
 		for(int j = 0; j < 16; j++) 
 		{
-			tabuleiro1[i][j] = "   ";
-			tabuleiro2[i][j] = "   ";
-			tabaux1[i][j] = "   ";
-			tabaux2[i][j] = "   ";
+			strcpy(tabuleiro1[i][j], "   ");
+			strcpy(tabuleiro2[i][j], "   ");
+			strcpy(tabaux1[i][j], "   ");
+			strcpy(tabaux2[i][j], "   ");
 			pontos1 = 0.0;
 			pontos2 = 0.0;
 			contador_destruido = 0;
@@ -125,12 +125,12 @@ int setArmada1(char ***tabaux1)
 			x = rand() % 15;
 			y = rand() % 15;
 		} while(x < 4 || y < 1 || y==15 || y==0);
-		if(tabaux1[y][x]=="   "){
-			tabaux1[y][x] = "P2 ";
-			tabaux1[y-1][x-1] = "P2 ", tabaux1[y][x-1] = "P2 ", tabaux1[y+1][x-1] = "P2 "; 
-			tabaux1[y-1][x-2] = "P2 ", tabaux1[y][x-2] = "P2 ", tabaux1[y+1][x-2] = "P2 "; 
-			tabaux1[y-1][x-3] = "P2 ", tabaux1[y][x-3] = "P2 ", tabaux1[y+1][x-3] = "P2 "; 
-			tabaux1[y][x-4] = "P2 ";
+		if(strcmp(tabaux1[y][x], "   ") == 0){
+			strcpy(tabaux1[y][x], "P2 ");
+			strcpy(tabaux1[y-1][x-1], "P2 "), strcpy(tabaux1[y][x-1], "P2 "), strcpy(tabaux1[y+1][x-1], "P2 "); 
+			strcpy(tabaux1[y-1][x-2], "P2 "), strcpy(tabaux1[y][x-2], "P2 "), strcpy(tabaux1[y+1][x-2], "P2 "); 
+			strcpy(tabaux1[y-1][x-3], "P2 "), strcpy(tabaux1[y][x-3], "P2 "), strcpy(tabaux1[y+1][x-3], "P2 "); 
+			strcpy(tabaux1[y][x-4], "P2 ");
 		}
 	}
 	else 
@@ -141,12 +141,12 @@ int setArmada1(char ***tabaux1)
 			x = rand() % 15;
 			y = rand() % 15;
 		} while(x==0 || x==15 || y < 4);
-		if(tabaux1[y][x]=="   "){
-			tabaux1[y][x] = "P2 ";
-			tabaux1[y-1][x] = "P2 ", tabaux1[y-1][x-1] = "P2 ", tabaux1[y-1][x+1] = "P2 "; 
-			tabaux1[y-2][x] = "P2 ", tabaux1[y-2][x-1] = "P2 ", tabaux1[y-2][x+1] = "P2 "; 
-			tabaux1[y-3][x] = "P2 ", tabaux1[y-3][x-1] = "P2 ", tabaux1[y-3][x+1] = "P2 "; 
-			tabaux1[y-4][x] = "P2 ";
+		if(strcmp(tabaux1[y][x], "   ") == 0){
+			strcpy(tabaux1[y][x], "P2 ");
+			strcpy(tabaux1[y-1][x], "P2 "), strcpy(tabaux1[y-1][x-1], "P2 "), strcpy(tabaux1[y-1][x+1], "P2 "); 
+			strcpy(tabaux1[y-2][x], "P2 "), strcpy(tabaux1[y-2][x-1], "P2 "), strcpy(tabaux1[y-2][x+1], "P2 "); 
+			strcpy(tabaux1[y-3][x], "P2 "), strcpy(tabaux1[y-3][x-1], "P2 "), strcpy(tabaux1[y-3][x+1], "P2 "); 
+			strcpy(tabaux1[y-4][x], "P2 ");
 		}
 	} 
 
@@ -164,9 +164,9 @@ int setArmada1(char ***tabaux1)
 				y = rand() % 15;	
 			} while(x > 12 || y > 12 || tabaux1[y][x]!="   " || tabaux1[y+1][x]!="   " || tabaux1[y+2][x]!="   " || tabaux1[y+3][x]!="   " || tabaux1[y+1][x+1]!="   " || tabaux1[y+1][x+2]!="   " || tabaux1[y][x+3]!="   " || tabaux1[y+1][x+3]!="   " ||  tabaux1[y+2][x+3]!="   " ||tabaux1[y+3][x+3]!="   ");
 
-			tabaux1[y][x] = "C2 ";
-			tabaux1[y+1][x] = "C2 ", tabaux1[y+2][x] = "C2 ", tabaux1[y+3][x] = "C2 ", tabaux1[y+1][x+1] = "C2 ";
-			tabaux1[y+1][x+2] = "C2 ", tabaux1[y][x+3] = "C2 ", tabaux1[y+1][x+3] = "C2 ", tabaux1[y+2][x+3] = "C2 ", tabaux1[y+3][x+3] = "C2 ";
+			strcpy(tabaux1[y][x], "C2 ");
+			strcpy(tabaux1[y+1][x], "C2 "), strcpy(tabaux1[y+2][x], "C2 "), strcpy(tabaux1[y+3][x], "C2 "), strcpy(tabaux1[y+1][x+1], "C2 ");
+			strcpy(tabaux1[y+1][x+2], "C2 "), strcpy(tabaux1[y][x+3], "C2 "), strcpy(tabaux1[y+1][x+3], "C2 "), strcpy(tabaux1[y+2][x+3], "C2 "), strcpy(tabaux1[y+3][x+3], "C2 ");
 
 		}
 		else if(z==1)
@@ -177,9 +177,9 @@ int setArmada1(char ***tabaux1)
 				x = rand() % 15;
 				y = rand() % 15;	
 			} while(x > 12 || y < 3 || tabaux1[y][x]!="   " || tabaux1[y][x+1]!="   " || tabaux1[y][x+2]!="   " || tabaux1[y][x+3]!="   " || tabaux1[y-1][x+1]!="   " || tabaux1[y-2][x+1]!="   " || tabaux1[y-3][x]!="   " || tabaux1[y-3][x+1]!="   " || tabaux1[y-3][x+2]!="   " || tabaux1[y-3][x+3]!="   ");
-			tabaux1[y][x] = "C2 ";
-			tabaux1[y][x+1] = "C2 ", tabaux1[y][x+2] = "C2 ", tabaux1[y][x+3] = "C2 ", tabaux1[y-1][x+1] = "C2 ";
-			tabaux1[y-2][x+1] = "C2 ", tabaux1[y-3][x] = "C2 ", tabaux1[y-3][x+1] = "C2 ", tabaux1[y-3][x+2] = "C2 ", tabaux1[y-3][x+3] = "C2 ";
+			strcpy(tabaux1[y][x], "C2 ");
+			strcpy(tabaux1[y][x+1], "C2 "), strcpy(tabaux1[y][x+2], "C2 "), strcpy(tabaux1[y][x+3], "C2 "), strcpy(tabaux1[y-1][x+1], "C2 ");
+			strcpy(tabaux1[y-2][x+1], "C2 "), strcpy(tabaux1[y-3][x], "C2 "), strcpy(tabaux1[y-3][x+1], "C2 "), strcpy(tabaux1[y-3][x+2], "C2 "), strcpy(tabaux1[y-3][x+3], "C2 ");
 		} 
 		else if(z==2)
 		{
@@ -190,7 +190,7 @@ int setArmada1(char ***tabaux1)
 				y = rand() % 15;	
 			} while(x > 13 || y > 13 || y==0 || x < 2 || tabaux1[y][x] != "   " || tabaux1[y+1][x] != "   " || tabaux1[y-1][x-1] != "   " || tabaux1[y][x-1] != "   " || tabaux1[y+1][x-1] != "   " || tabaux1[y+2][x-1] != "   " || tabaux1[y-1][x-2] != "   " || tabaux1[y][x-2] != "   " || tabaux1[y+1][x-2] != "   " || tabaux1[y+2][x-2] != "   ");
 
-			tabaux1[y][x] = "C2 ", tabaux1[y+1][x] = "C2 ", tabaux1[y-1][x-1] = "C2 ", tabaux1[y][x-1] = "C2 ", tabaux1[y+1][x-1] = "C2 ", tabaux1[y+2][x-1] = "C2 ", tabaux1[y-1][x-2] = "C2 ", tabaux1[y][x-2] = "C2 ", tabaux1[y+1][x-2] = "C2 ", tabaux1[y+2][x-2] = "C2 ";
+			strcpy(tabaux1[y][x], "C2 "), strcpy(tabaux1[y+1][x], "C2 "), strcpy(tabaux1[y-1][x-1], "C2 "), strcpy(tabaux1[y][x-1], "C2 "), strcpy(tabaux1[y+1][x-1], "C2 "), strcpy(tabaux1[y+2][x-1], "C2 "), strcpy(tabaux1[y-1][x-2], "C2 "), strcpy(tabaux1[y][x-2], "C2 "), strcpy(tabaux1[y+1][x-2], "C2 "), strcpy(tabaux1[y+2][x-2], "C2 ");
 		}
 	}
 
@@ -207,7 +207,7 @@ int setArmada1(char ***tabaux1)
 				y = rand() % 15;	
 			} while(y==15 || y==0 || x==15 || x==0 || tabaux1[y][x] != "   " || tabaux1[y-1][x-1] != "   " || tabaux1[y-1][x] != "   " || tabaux1[y-1][x+1] != "   " || tabaux1[y+1][x-1] != "   " || tabaux1[y+1][x] != "   " ||  tabaux1[y+1][x+1] != "   " );
 				
-			tabaux1[y][x] = "T2 ", tabaux1[y-1][x-1] = "T2 ", tabaux1[y-1][x] = "T2 ", tabaux1[y-1][x+1] = "T2 ", tabaux1[y+1][x-1] = "T2 ", tabaux1[y+1][x] = "T2 ", tabaux1[y+1][x+1] = "T2 ";
+			strcpy(tabaux1[y][x], "T2 "), strcpy(tabaux1[y-1][x-1], "T2 "), strcpy(tabaux1[y-1][x], "T2 "), strcpy(tabaux1[y-1][x+1], "T2 "), strcpy(tabaux1[y+1][x-1], "T2 "), strcpy(tabaux1[y+1][x], "T2 "), strcpy(tabaux1[y+1][x+1], "T2 ");
 		}
 		if(z==1)
 		{
@@ -217,7 +217,7 @@ int setArmada1(char ***tabaux1)
 				y = rand() % 15;
 			} while(x > 13 || y > 13 || y==0 || x < 2 || tabaux1[y][x] != "   " || tabaux1[y-1][x-1] != "   " || tabaux1[y][x-1] != "   " || tabaux1[y+1][x-1] != "   " || tabaux1[y-1][x+1] != "   " || tabaux1[y][x+1] != "   "  || tabaux1[y+1][x+1] != "   ");
 				
-			tabaux1[y][x] = "T2 ", tabaux1[y-1][x-1] = "T2 ", tabaux1[y][x-1] = "T2 ", tabaux1[y+1][x-1] = "T2 ", tabaux1[y-1][x+1] = "T2 ", tabaux1[y][x+1] = "T2 ", tabaux1[y+1][x+1] = "T2 ";
+			strcpy(tabaux1[y][x], "T2 "), strcpy(tabaux1[y-1][x-1], "T2 "), strcpy(tabaux1[y][x-1], "T2 "), strcpy(tabaux1[y+1][x-1], "T2 "), strcpy(tabaux1[y-1][x+1], "T2 "), strcpy(tabaux1[y][x+1], "T2 "), strcpy(tabaux1[y+1][x+1], "T2 ");
 		}
 	 	if(z==2)
 		{
@@ -227,7 +227,7 @@ int setArmada1(char ***tabaux1)
 				y = rand() % 15;
 			} while(x > 13 || y > 14 || y==0  || tabaux1[y][x] != "   " || tabaux1[y-1][x+1] != "   " || tabaux1[y][x+1] != "   " || tabaux1[y+1][x+1] != "   " || tabaux1[y-1][x+2] != "   " || tabaux1[y][x+2] != "   "  || tabaux1[y+1][x+2] != "   ");
 
-			tabaux1[y][x] = "T2 ", tabaux1[y-1][x+1] = "T2 ", tabaux1[y][x+1] = "T2 ", tabaux1[y+1][x+1] = "T2 ", tabaux1[y-1][x+2] = "T2 ", tabaux1[y][x+2] = "T2 ", tabaux1[y+1][x+2] = "T2 ";
+			strcpy(tabaux1[y][x], "T2 "), strcpy(tabaux1[y-1][x+1], "T2 "), strcpy(tabaux1[y][x+1], "T2 "), strcpy(tabaux1[y+1][x+1], "T2 "), strcpy(tabaux1[y-1][x+2], "T2 "), strcpy(tabaux1[y][x+2], "T2 "), strcpy(tabaux1[y+1][x+2], "T2 ");
 
 		}
 		if(z==3)
@@ -238,7 +238,7 @@ int setArmada1(char ***tabaux1)
 				y = rand() % 15;
 			} while(x == 0 || y > 13 || x == 15  || tabaux1[y][x] != "   " || tabaux1[y+1][x-1] != "   " || tabaux1[y+1][x] != "   " || tabaux1[y+1][x+1] != "   " || tabaux1[y+2][x-1] != "   " || tabaux1[y+2][x] != "   "  || tabaux1[y+2][x+1] != "   ");
 
-			tabaux1[y][x] = "T2 ", tabaux1[y+1][x-1] = "T2 ", tabaux1[y+1][x] = "T2 ", tabaux1[y+1][x+1] = "T2 ", tabaux1[y+2][x-1] = "T2 ", tabaux1[y+2][x] = "T2 ", tabaux1[y+2][x+1] = "T2 ";
+			strcpy(tabaux1[y][x], "T2 "), strcpy(tabaux1[y+1][x-1], "T2 "), strcpy(tabaux1[y+1][x], "T2 "), strcpy(tabaux1[y+1][x+1], "T2 "), strcpy(tabaux1[y+2][x-1], "T2 "), strcpy(tabaux1[y+2][x], "T2 "), strcpy(tabaux1[y+2][x+1], "T2 ");
 		}
 	}
 	// ---------------------------------------- HIDROAVIOES ------------
@@ -253,8 +253,8 @@ int setArmada1(char ***tabaux1)
 			y = rand() % 15;
 		} while(x > 12 || y == 15 || tabaux1[y][x] != "   " || tabaux1[y][x+1] != "   " || tabaux1[y][x+2] != "   " || tabaux1[y][x+3] != "   " || tabaux1[y+1][x] != "   " || tabaux1[y+1][x+1] != "   " || tabaux1[y+1][x+2] != "   " || tabaux1[y+1][x+3] != "   ");
 
-		tabaux1[y][x] = "H2 ", tabaux1[y][x+1] = "H2 ", tabaux1[y][x+2] = "H2 ", tabaux1[y][x+3] = "H2 ";
-		tabaux1[y+1][x] = "H2 ", tabaux1[y+1][x+1] = "H2 ", tabaux1[y+1][x+2] = "H2 ", tabaux1[y+1][x+3] = "H2 ";
+		strcpy(tabaux1[y][x], "H2 "), strcpy(tabaux1[y][x+1], "H2 "), strcpy(tabaux1[y][x+2], "H2 "), strcpy(tabaux1[y][x+3], "H2 ");
+		strcpy(tabaux1[y+1][x], "H2 "), strcpy(tabaux1[y+1][x+1], "H2 "), strcpy(tabaux1[y+1][x+2], "H2 "), strcpy(tabaux1[y+1][x+3], "H2 ");
 
 		do
 		{
@@ -262,7 +262,7 @@ int setArmada1(char ***tabaux1)
 			y = rand() % 15;
 		} while(y > 12 || x == 15 || tabaux1[y][x] != "   " || tabaux1[y+1][x] != "   " || tabaux1[y+2][x] != "   " || tabaux1[y+3][x] != "   " || tabaux1[y][x+1] != "   " || tabaux1[y+1][x+1] != "   " || tabaux1[y+2][x+1] != "   " || tabaux1[y+3][x+1] != "   ");
 
-		tabaux1[y][x] = "H2 ", tabaux1[y+1][x] = "H2 ", tabaux1[y+2][x] = "H2 ", tabaux1[y+3][x] = "H2 ", tabaux1[y][x+1] = "H2 ", tabaux1[y+1][x+1] = "H2 ", tabaux1[y+2][x+1] = "H2 ", tabaux1[y+3][x+1] = "H2 ";
+		strcpy(tabaux1[y][x], "H2 "), strcpy(tabaux1[y+1][x], "H2 "), strcpy(tabaux1[y+2][x], "H2 "), strcpy(tabaux1[y+3][x], "H2 "), strcpy(tabaux1[y][x+1], "H2 "), strcpy(tabaux1[y+1][x+1], "H2 "), strcpy(tabaux1[y+2][x+1], "H2 "), strcpy(tabaux1[y+3][x+1], "H2 ");
 		
 	}  
 	// fazendo com que as casas sem nenhuma embarcação sejam agua
@@ -271,8 +271,8 @@ int setArmada1(char ***tabaux1)
 	{
 		for(int j = 0; j < 16; j++)
 		{
-			if(tabaux1[i][j]=="   ")
-				tabaux1[i][j] = " * ";
+			if(strcmp(tabaux1[i][j], "   ") == 0)
+				strcpy(tabaux1[i][j], " * ");
 		}
 	}
 }
@@ -292,12 +292,13 @@ int setArmada2(char ***tabaux2)
 			x = rand() % 15;
 			y = rand() % 15;
 		} while(x < 4 || y < 1 || y==15 || y==0);
-		if(tabaux2[y][x]=="   "){
-			tabaux2[y][x] = "P1 ";
-			tabaux2[y-1][x-1] = "P1 ", tabaux2[y][x-1] = "P1 ", tabaux2[y+1][x-1] = "P1 "; 
-			tabaux2[y-1][x-2] = "P1 ", tabaux2[y][x-2] = "P1 ", tabaux2[y+1][x-2] = "P1 "; 
-			tabaux2[y-1][x-3] = "P1 ", tabaux2[y][x-3] = "P1 ", tabaux2[y+1][x-3] = "P1 "; 
-			tabaux2[y][x-4] = "P1 ";
+		if(strcmp(tabaux2[y][x], "   ") == 0)
+		{
+			strcpy(tabaux2[y][x], "P1 ");
+			strcpy(tabaux2[y-1][x-1], "P1 "), strcpy(tabaux2[y][x-1], "P1 "), strcpy(tabaux2[y+1][x-1], "P1 "); 
+			strcpy(tabaux2[y-1][x-2], "P1 "), strcpy(tabaux2[y][x-2], "P1 "), strcpy(tabaux2[y+1][x-2], "P1 "); 
+			strcpy(tabaux2[y-1][x-3], "P1 "), strcpy(tabaux2[y][x-3], "P1 "), strcpy(tabaux2[y+1][x-3], "P1 "); 
+			strcpy(tabaux2[y][x-4], "P1 ");
 		}
 	}
 	else 
@@ -308,12 +309,13 @@ int setArmada2(char ***tabaux2)
 			x = rand() % 15;
 			y = rand() % 15;
 		} while(x==0 || x==15 || y < 4);
-		if(tabaux2[y][x]=="   "){
-			tabaux2[y][x] = "P1 ";
-			tabaux2[y-1][x] = "P1 ", tabaux2[y-1][x-1] = "P1 ", tabaux2[y-1][x+1] = "P1 "; 
-			tabaux2[y-2][x] = "P1 ", tabaux2[y-2][x-1] = "P1 ", tabaux2[y-2][x+1] = "P1 "; 
-			tabaux2[y-3][x] = "P1 ", tabaux2[y-3][x-1] = "P1 ", tabaux2[y-3][x+1] = "P1 "; 
-			tabaux2[y-4][x] = "P1 ";
+		if(strcmp(tabaux2[y][x], "   ") == 0)
+		{
+			strcpy(tabaux2[y][x], "P1 ");
+			strcpy(tabaux2[y-1][x], "P1 "), strcpy(tabaux2[y-1][x-1], "P1 "), strcpy(tabaux2[y-1][x+1], "P1 "); 
+			strcpy(tabaux2[y-2][x], "P1 "), strcpy(tabaux2[y-2][x-1], "P1 "), strcpy(tabaux2[y-2][x+1], "P1 "); 
+			strcpy(tabaux2[y-3][x], "P1 "), strcpy(tabaux2[y-3][x-1], "P1 "), strcpy(tabaux2[y-3][x+1], "P1 "); 
+			strcpy(tabaux2[y-4][x], "P1 ");
 		}
 	} 
 
@@ -331,9 +333,9 @@ int setArmada2(char ***tabaux2)
 				y = rand() % 15;	
 			} while(x > 12 || y > 12 || tabaux2[y][x]!="   " || tabaux2[y+1][x]!="   " || tabaux2[y+2][x]!="   " || tabaux2[y+3][x]!="   " || tabaux2[y+1][x+1]!="   " || tabaux2[y+1][x+2]!="   " || tabaux2[y][x+3]!="   " || tabaux2[y+1][x+3]!="   " ||  tabaux2[y+2][x+3]!="   " ||tabaux2[y+3][x+3]!="   ");
 
-			tabaux2[y][x] = "C1 ";
-			tabaux2[y+1][x] = "C1 ", tabaux2[y+2][x] = "C1 ", tabaux2[y+3][x] = "C1 ", tabaux2[y+1][x+1] = "C1 ";
-			tabaux2[y+1][x+2] = "C1 ", tabaux2[y][x+3] = "C1 ", tabaux2[y+1][x+3] = "C1 ", tabaux2[y+2][x+3] = "C1 ", tabaux2[y+3][x+3] = "C1 ";
+			strcpy(tabaux2[y][x], "C1 ");
+			strcpy(tabaux2[y+1][x], "C1 "), strcpy(tabaux2[y+2][x], "C1 "), strcpy(tabaux2[y+3][x], "C1 "), strcpy(tabaux2[y+1][x+1], "C1 ");
+			strcpy(tabaux2[y+1][x+2], "C1 "), strcpy(tabaux2[y][x+3], "C1 "), strcpy(tabaux2[y+1][x+3], "C1 "), strcpy(tabaux2[y+2][x+3], "C1 "), strcpy(tabaux2[y+3][x+3], "C1 ");
 
 		}
 		else if(z==1)
@@ -344,9 +346,9 @@ int setArmada2(char ***tabaux2)
 				x = rand() % 15;
 				y = rand() % 15;	
 			} while(x > 12 || y < 3 || tabaux2[y][x]!="   " || tabaux2[y][x+1]!="   " || tabaux2[y][x+2]!="   " || tabaux2[y][x+3]!="   " || tabaux2[y-1][x+1]!="   " || tabaux2[y-2][x+1]!="   " || tabaux2[y-3][x]!="   " || tabaux2[y-3][x+1]!="   " || tabaux2[y-3][x+2]!="   " || tabaux2[y-3][x+3]!="   ");
-			tabaux2[y][x] = "C1 ";
-			tabaux2[y][x+1] = "C1 ", tabaux2[y][x+2] = "C1 ", tabaux2[y][x+3] = "C1 ", tabaux2[y-1][x+1] = "C1 ";
-			tabaux2[y-2][x+1] = "C1 ", tabaux2[y-3][x] = "C1 ", tabaux2[y-3][x+1] = "C1 ", tabaux2[y-3][x+2] = "C1 ", tabaux2[y-3][x+3] = "C1 ";
+			strcpy(tabaux2[y][x], "C1 ");
+			strcpy(tabaux2[y][x+1], "C1 "), strcpy(tabaux2[y][x+2], "C1 "), strcpy(tabaux2[y][x+3], "C1 "), strcpy(tabaux2[y-1][x+1], "C1 ");
+			strcpy(tabaux2[y-2][x+1], "C1 "), strcpy(tabaux2[y-3][x], "C1 "), strcpy(tabaux2[y-3][x+1], "C1 "), strcpy(tabaux2[y-3][x+2], "C1 "), strcpy(tabaux2[y-3][x+3], "C1 ");
 		} 
 		else if(z==2)
 		{
@@ -357,7 +359,7 @@ int setArmada2(char ***tabaux2)
 				y = rand() % 15;	
 			} while(x > 13 || y > 13 || y==0 || x < 2 || tabaux2[y][x] != "   " || tabaux2[y+1][x] != "   " || tabaux2[y-1][x-1] != "   " || tabaux2[y][x-1] != "   " || tabaux2[y+1][x-1] != "   " || tabaux2[y+2][x-1] != "   " || tabaux2[y-1][x-2] != "   " || tabaux2[y][x-2] != "   " || tabaux2[y+1][x-2] != "   " || tabaux2[y+2][x-2] != "   ");
 
-			tabaux2[y][x] = "C1 ", tabaux2[y+1][x] = "C1 ", tabaux2[y-1][x-1] = "C1 ", tabaux2[y][x-1] = "C1 ", tabaux2[y+1][x-1] = "C1 ", tabaux2[y+2][x-1] = "C1 ", tabaux2[y-1][x-2] = "C1 ", tabaux2[y][x-2] = "C1 ", tabaux2[y+1][x-2] = "C1 ", tabaux2[y+2][x-2] = "C1 ";
+			strcpy(tabaux2[y][x], "C1 "), strcpy(tabaux2[y+1][x], "C1 "), strcpy(tabaux2[y-1][x-1], "C1 "), strcpy(tabaux2[y][x-1], "C1 "), strcpy(tabaux2[y+1][x-1], "C1 "), strcpy(tabaux2[y+2][x-1], "C1 "), strcpy(tabaux2[y-1][x-2], "C1 "), strcpy(tabaux2[y][x-2], "C1 "), strcpy(tabaux2[y+1][x-2], "C1 "), strcpy(tabaux2[y+2][x-2], "C1 ");
 		}
 	}
 
@@ -374,7 +376,7 @@ int setArmada2(char ***tabaux2)
 				y = rand() % 15;	
 			} while(y==15 || y==0 || x==15 || x==0 || tabaux2[y][x] != "   " || tabaux2[y-1][x-1] != "   " || tabaux2[y-1][x] != "   " || tabaux2[y-1][x+1] != "   " || tabaux2[y+1][x-1] != "   " || tabaux2[y+1][x] != "   " ||  tabaux2[y+1][x+1] != "   " );
 				
-			tabaux2[y][x] = "T1 ", tabaux2[y-1][x-1] = "T1 ", tabaux2[y-1][x] = "T1 ", tabaux2[y-1][x+1] = "T1 ", tabaux2[y+1][x-1] = "T1 ", tabaux2[y+1][x] = "T1 ", tabaux2[y+1][x+1] = "T1 ";
+			strcpy(tabaux2[y][x], "T1 "), strcpy(tabaux2[y-1][x-1], "T1 "), strcpy(tabaux2[y-1][x], "T1 "), strcpy(tabaux2[y-1][x+1], "T1 "), strcpy(tabaux2[y+1][x-1], "T1 "), strcpy(tabaux2[y+1][x], "T1 "), strcpy(tabaux2[y+1][x+1], "T1 ");
 		}
 		if(z==1)
 		{
@@ -384,7 +386,7 @@ int setArmada2(char ***tabaux2)
 				y = rand() % 15;
 			} while(x > 13 || y > 13 || y==0 || x < 2 || tabaux2[y][x] != "   " || tabaux2[y-1][x-1] != "   " || tabaux2[y][x-1] != "   " || tabaux2[y+1][x-1] != "   " || tabaux2[y-1][x+1] != "   " || tabaux2[y][x+1] != "   "  || tabaux2[y+1][x+1] != "   ");
 				
-			tabaux2[y][x] = "T1 ", tabaux2[y-1][x-1] = "T1 ", tabaux2[y][x-1] = "T1 ", tabaux2[y+1][x-1] = "T1 ", tabaux2[y-1][x+1] = "T1 ", tabaux2[y][x+1] = "T1 ", tabaux2[y+1][x+1] = "T1 ";
+			strcpy(tabaux2[y][x], "T1 "), strcpy(tabaux2[y-1][x-1], "T1 "), strcpy(tabaux2[y][x-1], "T1 "), strcpy(tabaux2[y+1][x-1], "T1 "), strcpy(tabaux2[y-1][x+1], "T1 "), strcpy(tabaux2[y][x+1], "T1 "), strcpy(tabaux2[y+1][x+1], "T1 ");
 		}
 	 	if(z==2)
 		{
@@ -394,7 +396,7 @@ int setArmada2(char ***tabaux2)
 				y = rand() % 15;
 			} while(x > 13 || y > 14 || y==0  || tabaux2[y][x] != "   " || tabaux2[y-1][x+1] != "   " || tabaux2[y][x+1] != "   " || tabaux2[y+1][x+1] != "   " || tabaux2[y-1][x+2] != "   " || tabaux2[y][x+2] != "   "  || tabaux2[y+1][x+2] != "   ");
 
-			tabaux2[y][x] = "T1 ", tabaux2[y-1][x+1] = "T1 ", tabaux2[y][x+1] = "T1 ", tabaux2[y+1][x+1] = "T1 ", tabaux2[y-1][x+2] = "T1 ", tabaux2[y][x+2] = "T1 ", tabaux2[y+1][x+2] = "T1 ";
+			strcpy(tabaux2[y][x], "T1 "), strcpy(tabaux2[y-1][x+1], "T1 "), strcpy(tabaux2[y][x+1], "T1 "), strcpy(tabaux2[y+1][x+1], "T1 "), strcpy(tabaux2[y-1][x+2], "T1 "), strcpy(tabaux2[y][x+2], "T1 "), strcpy(tabaux2[y+1][x+2], "T1 ");
 
 		}
 		if(z==3)
@@ -405,7 +407,7 @@ int setArmada2(char ***tabaux2)
 				y = rand() % 15;
 			} while(x == 0 || y > 13 || x == 15  || tabaux2[y][x] != "   " || tabaux2[y+1][x-1] != "   " || tabaux2[y+1][x] != "   " || tabaux2[y+1][x+1] != "   " || tabaux2[y+2][x-1] != "   " || tabaux2[y+2][x] != "   "  || tabaux2[y+2][x+1] != "   ");
 
-			tabaux2[y][x] = "T1 ", tabaux2[y+1][x-1] = "T1 ", tabaux2[y+1][x] = "T1 ", tabaux2[y+1][x+1] = "T1 ", tabaux2[y+2][x-1] = "T1 ", tabaux2[y+2][x] = "T1 ", tabaux2[y+2][x+1] = "T1 ";
+			strcpy(tabaux2[y][x], "T1 "), strcpy(tabaux2[y+1][x-1], "T1 "), strcpy(tabaux2[y+1][x], "T1 "), strcpy(tabaux2[y+1][x+1], "T1 "), strcpy(tabaux2[y+2][x-1], "T1 "), strcpy(tabaux2[y+2][x], "T1 "), strcpy(tabaux2[y+2][x+1], "T1 ");
 		}
 	}
 	// ---------------------------------------- HIDROAVIOES ------------
@@ -420,8 +422,8 @@ int setArmada2(char ***tabaux2)
 			y = rand() % 15;
 		} while(x > 12 || y == 15 || tabaux2[y][x] != "   " || tabaux2[y][x+1] != "   " || tabaux2[y][x+2] != "   " || tabaux2[y][x+3] != "   " || tabaux2[y+1][x] != "   " || tabaux2[y+1][x+1] != "   " || tabaux2[y+1][x+2] != "   " || tabaux2[y+1][x+3] != "   ");
 
-		tabaux2[y][x] = "H1 ", tabaux2[y][x+1] = "H1 ", tabaux2[y][x+2] = "H1 ", tabaux2[y][x+3] = "H1 ";
-		tabaux2[y+1][x] = "H1 ", tabaux2[y+1][x+1] = "H1 ", tabaux2[y+1][x+2] = "H1 ", tabaux2[y+1][x+3] = "H1 ";
+		strcpy(tabaux2[y][x], "H1 "), strcpy(tabaux2[y][x+1], "H1 "), strcpy(tabaux2[y][x+2], "H1 "), strcpy(tabaux2[y][x+3], "H1 ");
+		strcpy(tabaux2[y+1][x], "H1 "), strcpy(tabaux2[y+1][x+1], "H1 "), strcpy(tabaux2[y+1][x+2], "H1 "), strcpy(tabaux2[y+1][x+3], "H1 ");
 
 		do
 		{
@@ -429,7 +431,7 @@ int setArmada2(char ***tabaux2)
 			y = rand() % 15;
 		} while(y > 12 || x == 15 || tabaux2[y][x] != "   " || tabaux2[y+1][x] != "   " || tabaux2[y+2][x] != "   " || tabaux2[y+3][x] != "   " || tabaux2[y][x+1] != "   " || tabaux2[y+1][x+1] != "   " || tabaux2[y+2][x+1] != "   " || tabaux2[y+3][x+1] != "   ");
 
-		tabaux2[y][x] = "H1 ", tabaux2[y+1][x] = "H1 ", tabaux2[y+2][x] = "H1 ", tabaux2[y+3][x] = "H1 ", tabaux2[y][x+1] = "H1 ", tabaux2[y+1][x+1] = "H1 ", tabaux2[y+2][x+1] = "H1 ", tabaux2[y+3][x+1] = "H1 ";
+		strcpy(tabaux2[y][x], "H1 "), strcpy(tabaux2[y+1][x], "H1 "), strcpy(tabaux2[y+2][x], "H1 "), strcpy(tabaux2[y+3][x], "H1 "), strcpy(tabaux2[y][x+1], "H1 "), strcpy(tabaux2[y+1][x+1], "H1 "), strcpy(tabaux2[y+2][x+1], "H1 "), strcpy(tabaux2[y+3][x+1], "H1 ");
 		
 
 	}  
@@ -439,8 +441,8 @@ int setArmada2(char ***tabaux2)
 	{
 		for(int j = 0; j < 16; j++)
 		{
-			if(tabaux2[i][j]=="   ")
-				tabaux2[i][j] = " * ";
+			if(strcmp(tabaux2[i][j], "   ") == 0)
+				strcpy(tabaux2[i][j], " * ");
 		}
 	}
 	
@@ -751,7 +753,7 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
    		fclose(create_arq);
 	}  
 
-	if(atk[0] == 'c' && atk[1] == 'a' && atk[2] == 'r' && atk[3] == 'r')
+	/*if(atk[0] == 'c' && atk[1] == 'a' && atk[2] == 'r' && atk[3] == 'r')
 	{
 		char tab[35] = "";
 		char data[35] = "";
@@ -783,7 +785,7 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 		fclose(open_file);
 
 
-	}
+	} */
 
 	return 0;
 } 
@@ -986,7 +988,7 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 	}  
 
 	//carregando uma partida previamente salva
-	if(atk[0] == 'c' && atk[1] == 'a' && atk[2] == 'r' && atk[3] == 'r')
+	/*if(atk[0] == 'c' && atk[1] == 'a' && atk[2] == 'r' && atk[3] == 'r')
 	{
 		printf("To aqui pra caralho\n");
 		char tab[35] = "";
@@ -1015,7 +1017,7 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 		}  
  
 		fclose(open_file);
-	}
+	} */
 	
 
 	return 0;

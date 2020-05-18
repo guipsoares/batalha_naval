@@ -49,7 +49,7 @@ int main(int argc, char const *argv[])
 					setArmada1(tabaux1);  
 					setArmada2(tabaux2); 
 					y=0;
-					  
+
 					
 					for(int i=0;i<256;i++)  
 					{
@@ -109,10 +109,7 @@ int main(int argc, char const *argv[])
 	} while(opcao!=5 || opcao<=0 || opcao>5);
 
 
-	free(tabuleiro1);
-	free(tabuleiro2);
-	free(tabaux1);
-	free(tabaux2);
+
 
 	return 0;
 }

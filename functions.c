@@ -14,14 +14,15 @@ int contador_destruido2=0;
 // setando todos os valores do tabuleiro como vazios
 int zerandoTabuleiro(char ***tabuleiro1, char ***tabuleiro2, char ***tabaux1, char ***tabaux2)
 {
+	char ww[] = "   ";
 	for(int i = 0; i < 16; i++) 
 	{
 		for(int j = 0; j < 16; j++) 
 		{
-			strcpy(tabuleiro1[i][j], "   ");
-			strcpy(tabuleiro2[i][j], "   ");
-			strcpy(tabaux1[i][j], "   ");
-			strcpy(tabaux2[i][j], "   ");
+			strcpy(tabuleiro1[i][j], ww);
+			strcpy(tabuleiro2[i][j], ww);
+			strcpy(tabaux1[i][j], ww);
+			strcpy(tabaux2[i][j], ww);
 			pontos1 = 0.0;
 			pontos2 = 0.0;
 			contador_destruido = 0;
@@ -131,6 +132,7 @@ int setArmada1(char ***tabaux1)
 			strcpy(tabaux1[y-1][x-2], "P2 "), strcpy(tabaux1[y][x-2], "P2 "), strcpy(tabaux1[y+1][x-2], "P2 "); 
 			strcpy(tabaux1[y-1][x-3], "P2 "), strcpy(tabaux1[y][x-3], "P2 "), strcpy(tabaux1[y+1][x-3], "P2 "); 
 			strcpy(tabaux1[y][x-4], "P2 ");
+
 		}
 	}
 	else 
@@ -776,7 +778,7 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 		{
 			for(int j = 0; j < 16; j++)
 			{
-				fscanf(open_file, "%s,%s,%s,%s,", &tabaux1[i][j], &tabaux2[i][j], &tabuleiro1[i][j], &tabuleiro2[i][j]);
+				fscanf(open_file, "%s,%s,%s,%s,", tabaux1[i][j], tabaux2[i][j], tabuleiro1[i][j], tabuleiro2[i][j]);
 				
 			}
 		} 
@@ -977,7 +979,7 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 		{
 			for(int j = 0; j < 16; j++)
 			{
-				fprintf(create_arq, "%s,%s,%s,%s,", tabaux1[i][j], tabuleiro2[i][j], tabaux1[i][j], tabaux2[i][j]);
+				fprintf(create_arq, "%s,%s,%s,%s,", tabaux1[i][j], tabaux2[i][j], tabuleiro1[i][j], tabuleiro2[i][j]);
 			}
 
 			fprintf(create_arq, "\n");
@@ -1010,7 +1012,7 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 		{
 			for(int j = 0; j < 16; j++)
 			{
-				fscanf(open_file, "%s,%s,%s,%s,", &tabaux1[i][j], &tabaux2[i][j], &tabuleiro1[i][j], &tabuleiro2[i][j]);
+				fscanf(open_file, "%s,%s,%s,%s,", tabaux1[i][j], tabaux2[i][j], tabuleiro1[i][j], tabuleiro2[i][j]);
 				
 			}
 

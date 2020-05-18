@@ -15,23 +15,40 @@ int main(int argc, char const *argv[])
  	//criacao das matrizes de strings tabuleiro, com uso de alocação dinamic
 	char ***tabuleiro1 = malloc(16 * sizeof(char**));  
 
-	for(int i = 0; i < 16; i++)  
-		tabuleiro1[i] = malloc(16 * sizeof(char*));  
+	for(int i = 0; i < 16; i++) {  
+		tabuleiro1[i] = malloc(16 * sizeof(char*));
+		for (int j = 0; j < 16; j++){
+			tabuleiro1[i][j] = malloc(4*sizeof(char));
+		}
+	} 
   
 	char ***tabuleiro2 = malloc(16 * sizeof(char**)); 
 
-	for(int i = 0; i < 16; i++)  
+	for(int i = 0; i < 16; i++) {  
 		tabuleiro2[i] = malloc(16 * sizeof(char*));
+		for (int j = 0; j < 16; j++){
+			tabuleiro2[i][j] = malloc(4*sizeof(char));
+		}
+	} 
 
 	char ***tabaux1 = malloc(16 * sizeof(char**));
 
-	for(int i = 0; i < 16; i++) 
+	for(int i = 0; i < 16; i++) {  
 		tabaux1[i] = malloc(16 * sizeof(char*));
+		for (int j = 0; j < 16; j++){
+			tabaux1[i][j] = malloc(4*sizeof(char));
+		}
+	} 
 
 	char ***tabaux2 = malloc(16 * sizeof(char**));
 
-	for(int i = 0; i < 16; i++)  
-		tabaux2[i] = malloc(16 * sizeof(char*)); 
+	for(int i = 0; i < 16; i++) {  
+		tabaux2[i] = malloc(16 * sizeof(char*));
+		for (int j = 0; j < 16; j++){
+			tabaux2[i][j] = malloc(4*sizeof(char));
+		}
+	} 
+ 	 
  	 
  
 	  
@@ -46,11 +63,11 @@ int main(int argc, char const *argv[])
 				case 1:     
  					// pre jogoo
 					zerandoTabuleiro(tabuleiro1, tabuleiro2, tabaux1, tabaux2); 
+					printf("biroliro\n");
 					setArmada1(tabaux1);  
 					setArmada2(tabaux2); 
 					y=0;
 
-					
 					for(int i=0;i<256;i++)  
 					{
 						acaoP1(tabuleiro1, tabaux1, &y, tabuleiro2, tabaux2, &i); 

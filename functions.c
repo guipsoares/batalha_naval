@@ -19,10 +19,10 @@ int zerandoTabuleiro(char ***tabuleiro1, char ***tabuleiro2, char ***tabaux1, ch
 	{
 		for(int j = 0; j < 16; j++) 
 		{
-			strcpy(tabuleiro1[i][j], "   ");
-			strcpy(tabuleiro2[i][j], "   ");
-			strcpy(tabaux1[i][j], "   ");
-			strcpy(tabaux2[i][j], "   ");
+			strcpy(tabuleiro1[i][j], ww);
+			strcpy(tabuleiro2[i][j], ww);
+			strcpy(tabaux1[i][j], ww);
+			strcpy(tabaux2[i][j], ww); 
 			pontos1 = 0.0;
 			pontos2 = 0.0;
 			contador_destruido = 0;

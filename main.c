@@ -63,7 +63,6 @@ int main(int argc, char const *argv[])
 				case 1:     
  					// pre jogoo
 					zerandoTabuleiro(tabuleiro1, tabuleiro2, tabaux1, tabaux2); 
-					printf("biroliro\n");
 					setArmada1(tabaux1);  
 					setArmada2(tabaux2); 
 					y=0;

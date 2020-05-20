@@ -760,7 +760,7 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
    		fclose(create_arq);
 	}  
 
-	/*if(atk[0] == 'c' && atk[1] == 'a' && atk[2] == 'r' && atk[3] == 'r')
+	if(atk[0] == 'c' && atk[1] == 'a' && atk[2] == 'r' && atk[3] == 'r')
 	{
 		char tab[35] = "";
 		char data[35] = "";
@@ -792,7 +792,7 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 		fclose(open_file);
 
 
-	} */
+	} 
 
 	return 0;
 } 
@@ -995,7 +995,7 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 	}  
 
 	//carregando uma partida previamente salva
-	/*if(atk[0] == 'c' && atk[1] == 'a' && atk[2] == 'r' && atk[3] == 'r')
+	if(atk[0] == 'c' && atk[1] == 'a' && atk[2] == 'r' && atk[3] == 'r')
 	{
 		printf("To aqui pra caralho\n");
 		char tab[35] = "";
@@ -1024,7 +1024,7 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 		}  
  
 		fclose(open_file);
-	} */
+	} 
 	
 
 	return 0;

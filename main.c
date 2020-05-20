@@ -124,6 +124,7 @@ int main(int argc, char const *argv[])
 
 	} while(opcao!=5 || opcao<=0 || opcao>5);
 
+	//desalocando memoria
 	for(int i = 0; i < 16; i++)
 	{
 		for( int j = 0; j < 16; j++)
@@ -133,8 +134,43 @@ int main(int argc, char const *argv[])
 		free(tabaux1[i]);
 	}
 
-	free(tabaux1);
+	free(tabaux2);
 
+	for(int i = 0; i < 16; i++)
+	{
+		for( int j = 0; j < 16; j++)
+		{
+			free(tabaux2[i][j]);
+		}
+		free(tabaux2[i]);
+	}
+
+	free(tabaux2);
+
+
+	for(int i = 0; i < 16; i++)
+	{
+		for( int j = 0; j < 16; j++)
+		{
+			free(tabuleiro1[i][j]);
+		}
+		free(tabuleiro1[i]);
+	}
+
+	free(tabuleiro1);
+
+
+
+	for(int i = 0; i < 16; i++)
+	{
+		for( int j = 0; j < 16; j++)
+		{
+			free(tabuleiro2[i][j]);
+		}
+		free(tabuleiro2[i]);
+	}
+
+	free(tabuleiro2); 
 
 	return 0;
 }

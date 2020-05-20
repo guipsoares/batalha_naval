@@ -67,7 +67,7 @@ int main(int argc, char const *argv[])
 					setArmada2(tabaux2); 
 					y=0;
 
-					for(int i=0;i<256;i++)  
+					for(int i = 0; i < 256; i++)  
 					{
 						acaoP1(tabuleiro1, tabaux1, &y, tabuleiro2, tabaux2, &i); 
 						if(y == 1)	
@@ -124,7 +124,16 @@ int main(int argc, char const *argv[])
 
 	} while(opcao!=5 || opcao<=0 || opcao>5);
 
+	for(int i = 0; i < 16; i++)
+	{
+		for( int j = 0; j < 16; j++)
+		{
+			free(tabaux1[i][j]);
+		}
+		free(tabaux1[i]);
+	}
 
+	free(tabaux1);
 
 
 	return 0;

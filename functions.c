@@ -19,10 +19,10 @@ int zerandoTabuleiro(char ***tabuleiro1, char ***tabuleiro2, char ***tabaux1, ch
 	{
 		for(int j = 0; j < 16; j++) 
 		{
-			strcpy(tabuleiro1[i][j], ww);
-			strcpy(tabuleiro2[i][j], ww);
-			strcpy(tabaux1[i][j], ww);
-			strcpy(tabaux2[i][j], ww);
+			strcpy(tabuleiro1[i][j], "   ");
+			strcpy(tabuleiro2[i][j], "   ");
+			strcpy(tabaux1[i][j], "   ");
+			strcpy(tabaux2[i][j], "   ");
 			pontos1 = 0.0;
 			pontos2 = 0.0;
 			contador_destruido = 0;
@@ -117,6 +117,7 @@ int setArmada1(char ***tabaux1)
 	int z;
 	//z=0 ->horizontal
 	//z=1 ->vertical
+	srand(time(NULL));
 	z = rand() % 2;
 	if(z==0)
 	{
@@ -288,6 +289,7 @@ int setArmada2(char ***tabaux2)
 	int z;
 	//z=0 ->horizontal
 	//z=1 ->vertical
+	srand(time(NULL));
 	z = rand() % 2;
 	if(z==0)
 	{
@@ -754,7 +756,7 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 				fprintf(create_arq, "%s,%s,%s,%s,", tabaux1[i][j], tabaux2[i][j], tabuleiro1[i][j], tabuleiro2[i][j]);
 				
 			}
-			fprintf(create_arq, "\n");
+			//fprintf(create_arq, "\n");
 		} 
 
    		fclose(create_arq);
@@ -783,7 +785,7 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 		{
 			for(int j = 0; j < 16; j++)
 			{
-				fscanf(open_file, "%s,%s,%s,%s,", tabaux1[i][j], tabaux2[i][j], tabuleiro1[i][j], tabuleiro2[i][j]);
+				fscanf(open_file, "%[^,],%[^,],%[^,],%[^,],", tabaux1[i][j], tabaux2[i][j], tabuleiro1[i][j], tabuleiro2[i][j]);
 				
 			}
 		} 
@@ -987,7 +989,7 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 				fprintf(create_arq, "%s,%s,%s,%s,", tabaux1[i][j], tabaux2[i][j], tabuleiro1[i][j], tabuleiro2[i][j]);
 			}
 
-			fprintf(create_arq, "\n");
+			//fprintf(create_arq, "\n");
 		} 
 
 
@@ -997,7 +999,6 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 	//carregando uma partida previamente salva
 	if(atk[0] == 'c' && atk[1] == 'a' && atk[2] == 'r' && atk[3] == 'r')
 	{
-		printf("To aqui pra caralho\n");
 		char tab[35] = "";
 
 		for(int i = 0; i < 32; i++)
@@ -1017,7 +1018,7 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 		{
 			for(int j = 0; j < 16; j++)
 			{
-				fscanf(open_file, "%s,%s,%s,%s,", tabaux1[i][j], tabaux2[i][j], tabuleiro1[i][j], tabuleiro2[i][j]);
+				fscanf(open_file, "%[^,],%[^,],%[^,],%[^,],", tabaux1[i][j], tabaux2[i][j], tabuleiro1[i][j], tabuleiro2[i][j]);
 				
 			}
 

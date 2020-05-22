@@ -39,10 +39,12 @@ int printTabuleiro1(char ***tabuleiro1)
  	printf("     |                             P L A Y E R   1          PONTOS: %.2lf                |\n", pontos1);
  	printf("     |___________________________________________________________________________________|\n"); 
  	printf("\n\n\n"); 
+
 	int z;
 	printf("        ");
 	for(int i = 0; i < 16; i++)
 	{
+
 		printf("|%c  ", alphabet[i]);
 		 z = i+1;
 		if(z==16)
@@ -683,7 +685,7 @@ int acaoP1(char ***tabuleiro1, char ***tabaux1, int *y, char ***tabuleiro2, char
 			   *y=1;                                                  			//y=1 serve para sair do loop na main
 			}	
 		
-		tabuleiro1[number][coord] = tabaux1[number][coord];
+		strcpy(tabuleiro1[number][coord], tabaux1[number][coord]);
 		
 	}
 
@@ -909,7 +911,7 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 
 		} 
 		
-		tabuleiro2[number][coord] = tabaux2[number][coord];
+		strcpy(tabuleiro2[number][coord], tabaux2[number][coord]);
 		
 		if(contador_destruido2==64)
 			{
@@ -988,8 +990,6 @@ int acaoP2(char ***tabuleiro2, char ***tabaux2, int *y, char ***tabuleiro1, char
 			{
 				fprintf(create_arq, "%s,%s,%s,%s,", tabaux1[i][j], tabaux2[i][j], tabuleiro1[i][j], tabuleiro2[i][j]);
 			}
-
-			//fprintf(create_arq, "\n");
 		} 
 
 

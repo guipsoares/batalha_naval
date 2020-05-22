@@ -57,7 +57,7 @@ int main(int argc, char const *argv[])
 			system("clear");
 			layout();
 		 	scanf("%i", &opcao);    
-
+		 	
 			switch(opcao)      
 			{
 				case 1:     
@@ -65,7 +65,7 @@ int main(int argc, char const *argv[])
 					zerandoTabuleiro(tabuleiro1, tabuleiro2, tabaux1, tabaux2); 
 					setArmada1(tabaux1);  
 					setArmada2(tabaux2); 
-					y=0;
+					y=0; 
 
 					for(int i = 0; i < 256; i++)  
 					{
@@ -90,7 +90,7 @@ int main(int argc, char const *argv[])
 				; 
  
 				case 2:
-					system("sleep 01");
+					system("sleep 0.5");
 					comoJogar();
 					printf("Digite 0 e tecle ENTER para retornar ao menu principal.\n");
 					scanf("%i", &menu);
@@ -100,7 +100,7 @@ int main(int argc, char const *argv[])
 					;
   
 				case 3:
-					system("sleep 01");
+					system("sleep 0.5");
 					desenvolvedores();
 					printf("Digite 0 e tecle ENTER para retornar ao menu principal.\n");
 					scanf("%i", &menu);
@@ -109,7 +109,7 @@ int main(int argc, char const *argv[])
 					}
 
 				case 4:
-					system("sleep 01");
+					system("sleep 0.5");
 					comandos();
 					printf("Digite 0 e tecle ENTER para retornar ao menu principal.\n");
 					scanf("%i", &menu);
@@ -117,7 +117,7 @@ int main(int argc, char const *argv[])
 						break; 
 					}
 				case 5:
-					system("sleep 01"); 
+					system("sleep 0.5"); 
 					printf("Goodbye!\n");
 					break; 
 			}
@@ -133,8 +133,7 @@ int main(int argc, char const *argv[])
 		}
 		free(tabaux1[i]);
 	}
-
-	free(tabaux2);
+	free(tabaux1);
 
 	for(int i = 0; i < 16; i++)
 	{
@@ -144,7 +143,6 @@ int main(int argc, char const *argv[])
 		}
 		free(tabaux2[i]);
 	}
-
 	free(tabaux2);
 
 
@@ -156,7 +154,6 @@ int main(int argc, char const *argv[])
 		}
 		free(tabuleiro1[i]);
 	}
-
 	free(tabuleiro1);
 
 
@@ -169,7 +166,6 @@ int main(int argc, char const *argv[])
 		}
 		free(tabuleiro2[i]);
 	}
-
 	free(tabuleiro2); 
 
 	return 0;
